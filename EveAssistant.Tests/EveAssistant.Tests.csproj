@@ -1,0 +1,120 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Patterns\Common\ContextMenu_StackAll.png" />
+    <None Remove="Patterns\Common\ShipExteriorDisabled.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Patterns\Common\ContextMenu_StackAll.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Common\ShipExteriorDisabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EveAssistant.Common\EveAssistant.Common.csproj" />
+    <ProjectReference Include="..\EveAssistant.Graphic\EveAssistant.Graphic.csproj" />
+    <ProjectReference Include="..\EveAssistant.Logic\EveAssistant.Logic.csproj" />
+    <ProjectReference Include="..\EveAssistant\EveAssistant.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Patterns\Filament\Electrical\001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\ContextMenu\Screen_637776736871579584.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Filament\Electrical\Screen_637776677874330066.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Filament\Electrical\Screen_637776677949601863.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Fleet\Screen_637782698953802193.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Fleet\Screen_637782699636002407.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Fleet\Screen_637782699707849715.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Fleet\Screen_637782714548837472.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Fleet\Screen_637782718244548579.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InAbiss\Screen_637777913850525373.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InDock\Screen_637776672158891886.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InDock\Screen_637776673967770315.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InDock\Screen_637776676184444824.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InDock\Screen_637776677146380016.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InDock\Screen_637776685608552674.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InDock\Screen_637776686161779575.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InSpace\Screen_637776682522525968.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InSpace\Screen_637776682574687863.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InSpace\Screen_637776732456059408.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InSpace\Screen_637776751552686782.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\InSpace\Screen_637777837002130814.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Objects\ElectricalFilament.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Objects\Turret.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Screen_637773521468868454.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screens\Screen_637773521468868455.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Screens\NewFolder\" />
+  </ItemGroup>
+
+</Project>

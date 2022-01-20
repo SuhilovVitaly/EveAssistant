@@ -1,0 +1,5 @@
+﻿1. Set eve directory in Configuration\General.config like <add key="EveFolder" value ="C:\EVE3\EVE"/>
+2. Create client profile English_Mining
+3. Run eve client with selected character
+4. Close client
+5. Run EveAssistant and press `Settings reset` button

@@ -1,0 +1,68 @@
+audio:
+  audioEnabled: [132871384574089146, 0]
+  eveampGain: [132871384574089146, 0.0]
+  evevoiceGain: [132871384574089146, 0.525]
+  forceEnglishVoice: [132871384574089146, 1]
+  limitVoiceCount: [132806558395720787, 1]
+  masterVolume: [132871384574089146, 0.1875]
+  suppressTurret: [132871384574089146, 0]
+  uiGain: [132871384574089146, 0.54375]
+  useCombatMusic: [132871384574089146, 0]
+  useOldJukeboxOverride: [132866329462746128, 0]
+  worldVolume: [132871384574089146, 0.0]
+device:
+  DeviceSettings:
+  - 132871384390525836
+  - {Adapter: 0, AutoDepthStencilFormat: 4, BackBufferCount: 1, BackBufferFormat: 88,
+    BackBufferHeight: 1004, BackBufferWidth: 1228, EnableAutoDepthStencil: true, Flags: 0,
+    FullScreen_RefreshRateInHz: 0, MultiSampleQuality: 0, MultiSampleType: 0, PresentationInterval: 17,
+    SwapEffect: 0, Windowed: true}
+  FixedWindow: [132871384390525836, false]
+  FixedWindowSettings:
+  - 132871384391620541
+  - {adapter: 0, height: 1080, presentInterval: 17, width: 1920}
+  FullScreenResolution: [132871384390525836, null]
+  FullScreenSettings:
+  - 132871384391620541
+  - {adapter: 0, height: 1080, presentInterval: 17, width: 1920}
+  UIScaleFullscreen: [132871384574089146, 1.0]
+  UIScaleWindowed: [132871384574089146, 1.0]
+  WindowMode: [132871402544233784, 1]
+  WindowedResolution:
+  - 132871384390525836
+  - [1228, 1004]
+  WindowedSettings:
+  - 132871402544233784
+  - {adapter: 0, height: 1004, left: 1917, presentInterval: 17, showState: 0, top: 5,
+    width: 1228}
+  antiAliasing: [132871385535184471, 0]
+  brightness: [132871384390525836, 1.0]
+  charClothSimulation: [132871384574089146, 1]
+  charTextureQuality: [132871384574089146, 1]
+  fastCharacterCreation: [132871384574089146, 0]
+  lodQuality: [132871384936566260, 1]
+  postProcessingQuality: [132871385535184471, 0]
+  resourceCacheEnabled: [132871384390525836, 1]
+  shaderQuality: [132871402524012091, 1]
+  shadowQuality: [132871385535184471, 0]
+  textureQuality: [132871384936566260, 2]
+generic:
+  showintro2: [132626225051009985, 0]
+ui:
+  CSS_AdAlreadyDisplayed_http://81157/: [132239007372847797, true]
+  CSS_AdAlreadyDisplayed_http://81159/: [132228554152418498, true]
+  CSS_AdAlreadyDisplayed_http://86401/: [131639617993704186, true]
+  CSS_AdAlreadyDisplayed_http://86415/: [131693305699656950, true]
+  CSS_AdAlreadyDisplayed_http://86424/: [131721759500780808, true]
+  CSS_AdAlreadyDisplayed_http://86429/: [131724264895983157, true]
+  CSS_AdAlreadyDisplayed_http://86433/: [131726097389044764, true]
+  CSS_AdAlreadyDisplayed_http://86437/: [131760730530617307, true]
+  CSS_AdAlreadyDisplayed_http://86448/: [131754595120338497, true]
+  CSS_AdAlreadyDisplayed_http://87454/: [131790572502495474, true]
+  CSS_AdAlreadyDisplayed_http://87496/: [131876415203709381, true]
+  CSS_AdAlreadyDisplayed_http://87501/: [131877372066228676, true]
+  CSS_AdAlreadyDisplayed_http://87583/: [132243297903088156, true]
+  CalculatorHistory:
+  - 131928318108820943
+  - ['10000', '4', '6', '6', '30', '24', '10000', '6', '30', '24', '1.5', '7', '24',
+    '60', '30', '24', '3', '2', '60', '553']
