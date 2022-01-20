@@ -14,7 +14,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 
         public static bool Execute(IDevice device, IShip ship)
         {
-            TrafficDispatcher.ClickOnPoint(device.IntPtr, new Point(860, 5));
+            device.UnFocusClick();
 
             Thread.Sleep(1000);
 
@@ -30,7 +30,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 
                 Thread.Sleep(500);
 
-                TrafficDispatcher.ClickOnPoint(device.IntPtr, new Point(860, 5));
+                device.UnFocusClick();
             }
 
             var filterFilamentsOnScreen = device.FindObjectInScreen(Pattern, device.Zones.HangarItemFilters);
@@ -41,7 +41,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 
                 Thread.Sleep(500);
 
-                TrafficDispatcher.ClickOnPoint(device.IntPtr, new Point(860, 5));
+                device.UnFocusClick();
             }
 
             Thread.Sleep(200);

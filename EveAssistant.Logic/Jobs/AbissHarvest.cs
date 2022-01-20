@@ -260,7 +260,7 @@ namespace EveAssistant.Logic.Jobs
                     ActionEnterToAbiss.Execute();
                     break;
                 case ExitFromActionReason.Timeout:
-                    Device.Click(new Point(860, 5));
+                    Device.UnFocusClick();
                     ActionDockToBookmark.Execute();
                     break;
                 default:

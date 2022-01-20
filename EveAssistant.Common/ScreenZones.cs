@@ -17,5 +17,7 @@ namespace EveAssistant.Common
         public Point ActiveShipCargoPointFirst { get; set; } = new Point(170, 690);
 
         public Point ItemHangarCargoPoint { get; set; } = new Point(1025, 710);
+
+        public Point SafeUnFocusPoint { get; set; } = new Point(860, 5);
     }
 }

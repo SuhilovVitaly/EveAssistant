@@ -10,7 +10,7 @@ namespace EveAssistant.Logic.Jobs.Operations
     {
         public static bool Execute(IDevice device, IShip ship)
         {
-            device.Mouse.MouseMoveTo(new Point(860, 5));
+            device.UnFocusClick();
 
             Thread.Sleep(1000);
 

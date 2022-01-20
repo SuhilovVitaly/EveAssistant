@@ -37,7 +37,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
                 Thread.Sleep(1000);
 
-                TrafficDispatcher.ClickOnPoint(Device.IntPtr, new Point(860, 5));
+                Device.UnFocusClick();
             }
             else
             {
@@ -65,7 +65,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
                 Thread.Sleep(1000);
 
-                TrafficDispatcher.ClickOnPoint(Device.IntPtr, new Point(860, 5));
+                Device.UnFocusClick();
             }
             else
             {

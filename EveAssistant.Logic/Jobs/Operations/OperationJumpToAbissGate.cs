@@ -33,7 +33,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 
                     Thread.Sleep(1000);
 
-                    TrafficDispatcher.ClickOnPoint(device.IntPtr, new Point(860, 5));
+                    device.UnFocusClick();
 
                     Thread.Sleep(4000);
                 }
