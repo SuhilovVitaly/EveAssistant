@@ -79,7 +79,7 @@ namespace EveAssistant.Logic.Jobs.Actions
             while (!Device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, Device.Zones.SelectedItem).IsFound)
             {
                 Device.Logger("Lock target. Waiting...");
-
+                // TODO: 30 sec
                 Thread.Sleep(1000);
             }
 

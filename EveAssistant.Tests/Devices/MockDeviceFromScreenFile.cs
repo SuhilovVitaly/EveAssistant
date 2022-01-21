@@ -62,5 +62,10 @@ namespace EveAssistant.Tests.Devices
         {
             throw new NotImplementedException();
         }
+
+        public void UnFocusClick()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

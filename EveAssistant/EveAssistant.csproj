@@ -195,6 +195,9 @@
     <Content Include="Patterns\ContextMenu\UseTranquilFilament\01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Patterns\ContextMenu\UseTranquilFilament\02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Patterns\ContextMenu\WarpToLocation\01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -214,6 +217,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Patterns\Filament\Electrical\006.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Filament\Electrical\007.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Filament\Electrical\008.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Filament\Electrical\009.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Filament\Electrical\010.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Filament\Electrical\011.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Filament\Electrical\012.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Patterns\Filament\EnterToAbiss\01.png">
