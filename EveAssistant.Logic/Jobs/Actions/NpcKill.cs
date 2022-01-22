@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Threading;
+﻿using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Job.Action;
@@ -15,6 +12,8 @@ namespace EveAssistant.Logic.Jobs.Actions
     public class NpcKill : GenericAction, IBasicAction
     {
         public string Text { get; set; } = "[NpcKill]";
+
+        private const int ReLockTimeoutInSeconds = 20;
 
         public NpcKill(IDevice device, IShip ship) : base(device, ship)
         {
@@ -75,12 +74,35 @@ namespace EveAssistant.Logic.Jobs.Actions
                 return;
             }
 
+            var lockTimeout = 0;
 
             while (!Device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, Device.Zones.SelectedItem).IsFound)
             {
                 Device.Logger("Lock target. Waiting...");
-                // TODO: 30 sec
+                
                 Thread.Sleep(1000);
+
+                selectedItemOnScreen = Device.FindObjectInScreen(Types.PanelSelectedItemTarget, Device.Zones.SelectedItem);
+
+                if (selectedItemOnScreen.IsFound)
+                {
+                    Device.Logger("Re-Lock target.");
+
+                    TrafficDispatcher.ClickOnPoint(Device.IntPtr, selectedItemOnScreen.PositionCenterRandom());
+
+                    Thread.Sleep(1000);
+
+                    Device.UnFocusClick();
+                }
+
+                lockTimeout++;
+
+                if (lockTimeout > ReLockTimeoutInSeconds)
+                {
+                    Device.Logger("Exit from action by timeout on re-lock target.");
+                    ScreenCapture.ScreenShot(Device.IntPtr, "ReLockTargetTimeout", Device.Logger);
+                    FinishAction(ExitFromActionReason.Timeout);
+                }
             }
 
             Thread.Sleep(2000);

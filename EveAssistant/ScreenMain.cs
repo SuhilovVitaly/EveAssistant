@@ -120,15 +120,32 @@ namespace EveAssistant
 
         private async void button19_Click(object sender, EventArgs e)
         {
-            var pilot = (ComboboxItem)cmbActiveClients.SelectedItem;
 
-            var device = new WindowClientDevice(pilot.Value, LogWrite, Global.ApplicationSettings.Shortcuts, Global.PatternFactory, pilot.Text.Trim());
+            foreach (var item in cmbActiveClients.Items)
+            {
+                var pilotInformation = item as ComboboxItem;
 
-            var ship = new Punisher();
+                var device = new WindowClientDevice(pilotInformation.Value, LogWrite, Global.ApplicationSettings.Shortcuts, Global.PatternFactory, pilotInformation.Text.Trim());
 
-            Job = new AbissHarvest(device, ship);
+                var ship = new Punisher();
 
-            await Job.Execute(Job.CancellationToken.Token);
+                if (Job is null)
+                {
+                    Job = new AbissHarvest(device, ship);
+
+                    await Job.Execute(Job.CancellationToken.Token);
+                }
+                else
+                {
+                    var secondJob = new AbissHarvest(device, ship);
+
+                    await secondJob.Execute(secondJob.CancellationToken.Token);
+                }
+
+                Thread.Sleep(10000);
+            }
+
+            //var pilot = (ComboboxItem)cmbActiveClients.SelectedItem;
 
             timer1.Enabled = true;
         }

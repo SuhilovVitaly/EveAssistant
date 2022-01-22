@@ -1,1 +1,4 @@
-﻿
+﻿- Show current farm results in grid in separate tab
+- Save farm results in separate files
+- Check is ship destroyed
+- Change `Approach to` command to `Orbit` in `WaveInitialization` action
