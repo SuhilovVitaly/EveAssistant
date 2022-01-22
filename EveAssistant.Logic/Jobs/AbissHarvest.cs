@@ -75,9 +75,17 @@ namespace EveAssistant.Logic.Jobs
             Device.Metrics.StartJobTime = DateTime.Now;
         }
 
+        private void AfterActionExecution(BasicActionResult actionResult, IBasicAction action)
+        {
+            LogWrite($"Event {action.Text} OnComplete - {actionResult.Type}");
+
+            Device.Action = "";
+        }
+
         private void Event_DockToBookmarkOnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            LogWrite($"Event_DockToBookmarkOnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -102,7 +110,8 @@ namespace EveAssistant.Logic.Jobs
 
         private void Event_JumpInGateOnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            LogWrite($"Event_JumpInGateOnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -128,7 +137,8 @@ namespace EveAssistant.Logic.Jobs
 
         private void Event_LootAllToCargoOnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            LogWrite($"Event_LootAllToCargoOnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -171,7 +181,8 @@ namespace EveAssistant.Logic.Jobs
 
         private void Event_LootObjectKillOnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            LogWrite($"Event_LootObjectKillOnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -189,8 +200,8 @@ namespace EveAssistant.Logic.Jobs
 
         private void Event_WaveNpcKillOnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            
-            LogWrite($"Event_WaveNpcKillOnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -220,7 +231,8 @@ namespace EveAssistant.Logic.Jobs
 
         private void Event_WaveInitializationOnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            LogWrite($"Event_WaveInitializationOnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -235,7 +247,8 @@ namespace EveAssistant.Logic.Jobs
 
         private void Event_EnterToAbissOnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            LogWrite($"Event_EnterToAbissOnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -253,7 +266,8 @@ namespace EveAssistant.Logic.Jobs
 
         private void Event_WarpToBookmarkOnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            LogWrite($"Event_WarpToBookmarkOnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -271,7 +285,8 @@ namespace EveAssistant.Logic.Jobs
 
         private void Event_OnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            LogWrite($"Event_OnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -285,7 +300,8 @@ namespace EveAssistant.Logic.Jobs
 
         private void Event_StationExitOnComplete(BasicActionResult actionResult, IBasicAction action)
         {
-            LogWrite($"Event_StationExitOnComplete - {actionResult.Type}");
+            AfterActionExecution(actionResult, action);
+
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
@@ -298,7 +314,6 @@ namespace EveAssistant.Logic.Jobs
                     break;
             }
         }
-
 
         public async Task<AfterJobReport> Execute(CancellationToken token, int miningBookmarkPoint = 0)
         {

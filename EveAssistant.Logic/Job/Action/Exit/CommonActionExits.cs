@@ -12,7 +12,7 @@ namespace EveAssistant.Logic.Job.Action.Exit
 
             return new CheckExitResult
             {
-                IsExitFromAction = Tools.Dates.IsDownTime(DateTime.Now)
+                IsExitFromAction = Tools.Dates.IsDownTime(DateTime.UtcNow)
             };
         }
 

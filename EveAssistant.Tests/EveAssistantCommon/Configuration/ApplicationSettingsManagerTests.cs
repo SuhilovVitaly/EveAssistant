@@ -19,7 +19,7 @@ namespace EveAssistant.Tests.EveAssistantCommon.Configuration
             Assert.That(exceptedShortcutsApproach, Is.EqualTo(settings.Shortcuts.Approach));
 
 
-            bool silenceAlarm = Logic.Tools.Dates.IsDownTime(DateTime.Now);
+            bool silenceAlarm = Logic.Tools.Dates.IsDownTime(DateTime.UtcNow);
         }
     }
 }
