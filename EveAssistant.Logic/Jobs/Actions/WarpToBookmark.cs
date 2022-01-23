@@ -19,7 +19,10 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             ActionExits.Add((CommonActionExits.IsShipStopped, ExitFromActionIfShipInSpace));
         }
+        public void AfterExecute()
+        {
 
+        }
         public void CommandsExecute()
         {
             Device.Mouse.ClickCentreScreen();

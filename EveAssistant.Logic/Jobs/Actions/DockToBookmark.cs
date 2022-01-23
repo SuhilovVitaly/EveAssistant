@@ -25,7 +25,10 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             OperationDockToBookmark.Execute(Device, Ship, "Home");
         }
+        public void AfterExecute()
+        {
 
+        }
         private void ExitFromActionIfShipInSpace()
         {
             OperationMoveLootToHangar.Execute(Device, Ship);

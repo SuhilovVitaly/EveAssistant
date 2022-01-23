@@ -20,7 +20,10 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             ActionExits.Add((CommonActionExits.IsShipNotMovingToGate, ExitFromAction));
         }
+        public void AfterExecute()
+        {
 
+        }
         public void CommandsExecute()
         {
             Thread.Sleep(2000);
@@ -31,7 +34,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (OperationJumpToAbissGate.Execute(Device, Ship) == false)
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "PatternNotFound", Device.Logger);
+                Device.Report("Pattern_OverviewAbissGate_NotFound");
                 Device.Logger("[OperationEnterToTrace] fail.");
                 FinishAction(ExitFromActionReason.Timeout);
                 return;

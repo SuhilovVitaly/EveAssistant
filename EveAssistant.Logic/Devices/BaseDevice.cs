@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using EveAssistant.Common;
 using EveAssistant.Common.Configuration;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Device.Events;
 using EveAssistant.Common.UserInterface;
 using EveAssistant.Graphic;
+using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Devices
 {
@@ -62,6 +64,19 @@ namespace EveAssistant.Logic.Devices
                 (this as IDevice)?.Logger($"[FindObjectInScreen] Finished. Pattern '{entity}'. Is found '{result.IsFound}'. Search time is {result.ExecuteTimeInMilliseconds} ms.");
 
             return result;
+        }
+
+        public void Report(string file)
+        {
+            try
+            {
+                var pilotName = (this as IDevice)?.Pilot.Replace(" ", "_");
+                (this as IDevice)?.GetScreen().Save($"Reports/[{pilotName}]{file}_" + DateTime.Now.Ticks + @".png", ImageFormat.Png);
+            }
+            catch (Exception ex)
+            {
+                (this as IDevice)?.Logger($"Critical error on save report. Exception message is '{ex.Message}'");
+            }
         }
     }
 }

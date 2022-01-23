@@ -27,7 +27,7 @@ namespace EveAssistant.Logic.Jobs.Operations
                     new Point(150, 720), device.Logger);
             }
 
-            device.Mouse.ClickCentreScreen();
+            device.UnFocusClick();
 
             device.Logger("Finish move filament to cargo. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
         }

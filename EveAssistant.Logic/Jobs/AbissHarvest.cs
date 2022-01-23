@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using EveAssistant.Common.Device;
@@ -11,12 +10,13 @@ using EveAssistant.Logic.Job.Action.Exit;
 using EveAssistant.Logic.Jobs.Actions;
 using EveAssistant.Logic.Jobs.Operations;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs
 {
     public class AbissHarvest
     {
+        private const int TimeoutAfterJumpInGateInMs = 1000;
+        private const int TimeoutAfterKillNpcShipInMs = 2000;
         public CancellationTokenSource CancellationToken { get; set; } = new CancellationTokenSource();
 
         private Stopwatch MetricWorkTime { get; set; }
@@ -79,7 +79,11 @@ namespace EveAssistant.Logic.Jobs
         {
             LogWrite($"Event {action.Text} OnComplete - {actionResult.Type}");
 
+            Device.Report($"[{action.Text.Replace("[","").Replace("]", "")}][{actionResult.Type}]");
+
             Device.Action = "";
+
+            Thread.Sleep(1000);
         }
 
         private void Event_DockToBookmarkOnComplete(BasicActionResult actionResult, IBasicAction action)
@@ -103,7 +107,7 @@ namespace EveAssistant.Logic.Jobs
                     break;
 
                 default:
-                    // TODO: Alert! Alarm!
+                    ActionStationExit.Execute();
                     break;
             }
         }
@@ -116,7 +120,7 @@ namespace EveAssistant.Logic.Jobs
             {
                 case ExitFromActionReason.ActionCompleted:
 
-                    Thread.Sleep(10000);
+                    Thread.Sleep(TimeoutAfterJumpInGateInMs);
 
                     if (CommonActionExits.IsShipNotInAbissPocket(action).IsExitFromAction)
                     {
@@ -127,7 +131,6 @@ namespace EveAssistant.Logic.Jobs
 
                     ActionWaveInitialization.Execute();
                     break;
-
 
                 default:
                     ActionWaveInitialization.Execute();
@@ -192,8 +195,17 @@ namespace EveAssistant.Logic.Jobs
                 case ExitFromActionReason.PatternNotFound:
                     ActionLootAllToCargo.Execute();
                     break;
+
+                case ExitFromActionReason.BudkaNotFound:
+                    ActionJumpInGate.Execute();
+                    break;
+
+                case ExitFromActionReason.Timeout:
+                    ActionJumpInGate.Execute();
+                    break;
+
                 default:
-                    ActionLootAllToCargo.Execute();
+                    ActionJumpInGate.Execute();
                     break;
             }
         }
@@ -204,14 +216,19 @@ namespace EveAssistant.Logic.Jobs
 
             switch (actionResult.Type)
             {
+                case ExitFromActionReason.ActionCompletedWithAggressiveMode:
+                    LogWrite($"Killed one nps.");
+                    ActionJumpInGate.Execute();
+                    break;
+
                 case ExitFromActionReason.ActionCompleted:
                     LogWrite($"Killed one nps.");
-                    Thread.Sleep(5000);
+                    Thread.Sleep(TimeoutAfterKillNpcShipInMs);
                     RunNpcKillAction();
                     break;
                 case ExitFromActionReason.AllNpcAreKilled:
                     LogWrite($"Killed all nps.");
-                    Thread.Sleep(5000);
+                    Thread.Sleep(TimeoutAfterKillNpcShipInMs);
                     RunLootObjectKillAction();
                     break;
                 case ExitFromActionReason.Timeout:
@@ -240,7 +257,7 @@ namespace EveAssistant.Logic.Jobs
                     RunNpcKillAction();
                     break;
                 default:
-                    // TODO: Alert! Alarm!
+                    RunNpcKillAction();
                     break;
             }
         }
@@ -259,7 +276,7 @@ namespace EveAssistant.Logic.Jobs
                     ActionDockToBookmark.Execute();
                     break;
                 default:
-                    // TODO: Alert! Alarm!
+                    ActionDockToBookmark.Execute();
                     break;
             }
         }
@@ -278,7 +295,7 @@ namespace EveAssistant.Logic.Jobs
                     ActionDockToBookmark.Execute();
                     break;
                 default:
-                    // TODO: Alert! Alarm!
+                    ActionDockToBookmark.Execute();
                     break;
             }
         }
@@ -292,9 +309,6 @@ namespace EveAssistant.Logic.Jobs
                 case ExitFromActionReason.ActionCompleted:
                     ActionStationExit.Execute();
                     break;
-                default:
-                    // TODO: Alert! Alarm!
-                    break;
             }
         }
 
@@ -305,12 +319,13 @@ namespace EveAssistant.Logic.Jobs
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
-                    Thread.Sleep(5000);
                     ActionWarpToBookmark.Execute();
                     break;
                 case ExitFromActionReason.Timeout:
-                    //Device.SaveReport("StationExit_Timeout");
-                    //ActionWarpToBookmark.Execute();
+                    ActionDockToBookmark.Execute();
+                    break;
+                default:
+                    ActionDockToBookmark.Execute();
                     break;
             }
         }

@@ -39,6 +39,7 @@ namespace EveAssistant.Logic.Jobs.Operations
                 }
                 else
                 {
+                    device.Report("Pattern_ActivateGate_NotFound");
                     device.Logger("[OperationEnterToTrace] 'Panel/SelectedItem/ActivateGate' not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
 
                     return false;
@@ -46,6 +47,7 @@ namespace EveAssistant.Logic.Jobs.Operations
             }
             else
             {
+                device.Report($"Pattern_{Pattern.Replace("/", "_")}_NotFound");
                 device.Logger($"[OperationEnterToTrace] {Pattern} not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
                 return false;
             }

@@ -53,8 +53,10 @@
         public const string PanelSelectedOpenCargo = "Panel/SelectedItem/OpenCargo";
         public const string PanelSelectedItemTargetDisabled = "Panel/SelectedItem/TargetDisabled";
         public const string PanelSelectedItemUnLockTarget = "Panel/SelectedItem/UnLockTarget";
-        public const string PanelSelectedItemInfo = "Panel/SelectedItem/Info";
+        public const string PanelSelectedOrbit = "Panel/SelectedItem/Orbit";
         public const string PanelSelectedItemApproach = "Panel/SelectedItem/Approach";
+
+        public const string PanelSelectedItemNpcSkybreaker = "Panel/SelectedItem/NPC/Skybreaker";
 
         public const string Distance = "Distance/";
         public const string CargoIsFull = "CargoIsFull/";

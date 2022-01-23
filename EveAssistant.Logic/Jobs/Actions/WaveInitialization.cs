@@ -15,10 +15,13 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             TimeoutInSeconds = 40;
         }
+        public void AfterExecute()
+        {
 
+        }
         public void CommandsExecute()
         {
-            Device.Mouse.ClickCentreScreen();
+            Device.UnFocusClick();
 
             OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabMove);
 

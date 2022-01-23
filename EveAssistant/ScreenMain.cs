@@ -442,7 +442,7 @@ namespace EveAssistant
                 if (counter > 30)
                 {
                     counter = 0;
-
+                    
                     ScreenCapture.ScreenShot(_selectedGameClient.HWnd, "Time", LogWrite);
                 }
 

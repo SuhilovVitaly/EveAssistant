@@ -31,12 +31,14 @@ namespace EveAssistant.Logic.Jobs.Operations
                 }
                 else
                 {
+                    device.Report("Pattern_PanelSelectedItemApproach_NotFound");
                     device.Logger($"[OperationApproachToObject] Pattern {Types.PanelSelectedItemApproach} not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
                     return false;
                 }
             }
             else
             {
+                device.Report($"Pattern_{pattern.Replace("/","_")}_NotFound");
                 device.Logger($"[OperationApproachToObject] Pattern {pattern} not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
                 return false;
             }

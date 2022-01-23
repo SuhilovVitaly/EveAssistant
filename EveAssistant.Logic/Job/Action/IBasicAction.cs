@@ -18,6 +18,8 @@ namespace EveAssistant.Logic.Job.Action
 
         void Execute();
 
+        void AfterExecute();
+
         void CommandsExecute();
     }
 }

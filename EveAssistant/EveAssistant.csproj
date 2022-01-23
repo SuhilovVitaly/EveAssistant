@@ -366,10 +366,22 @@
     <Content Include="Patterns\Panel\SelectedItem\Approach\01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Patterns\Panel\SelectedItem\KeepAtRange\01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Panel\SelectedItem\NPC\Skybreaker\Skybreaker.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Patterns\Panel\SelectedItem\OpenCargo\01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Patterns\Panel\SelectedItem\OpenCargo\02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Panel\SelectedItem\Orbit\01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Panel\SelectedItem\Orbit\02.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Patterns\Panel\SelectedItem\TargetDisabled\01.png">
@@ -448,6 +460,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Patterns\Station\Undock\004.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Station\Undock\005.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Patterns\Window\Icons\01.png">

@@ -22,16 +22,19 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             ActionExits.Add((CommonActionExits.IsShipInAbiss, ExitFromAction));
         }
+        public void AfterExecute()
+        {
 
+        }
         public void CommandsExecute()
         {
-            Device.Mouse.ClickCentreScreen();
+            Device.UnFocusClick();
 
             OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabGates);
 
             if (OperationUseTranquilFilament.Execute(Device, Ship) == false)
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "PatternNotFound", Device.Logger);
+                Device.Report("Pattern_OverviewTabGates_NotFound");
                 Device.Logger("[OperationUseTranquilFilament] fail.");
                 FinishAction(ExitFromActionReason.Timeout);
                 return;
@@ -41,10 +44,12 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (OperationEnterToTrace.Execute(Device, Ship) == false)
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "PatternNotFound", Device.Logger);
+                Device.Report("Pattern_AbissGate_NotFound");
                 Device.Logger("[OperationEnterToTrace] fail.");
 
                 Device.Mouse.Click(new Point(600, 395));
+                FinishAction(ExitFromActionReason.Timeout);
+                return;
             }
 
             Thread.Sleep(200);

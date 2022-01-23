@@ -25,6 +25,7 @@ namespace EveAssistant.Logic.Jobs.Operations
             }
             else
             {
+                device.Report("Pattern_Bookmark_NotFound");
                 device.Logger("[OperationWarpToBookmark] Bookmark not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
                 return false;
             }

@@ -15,6 +15,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private const int ReLockTimeoutInSeconds = 20;
 
+        private bool isAggressiveMode;
+
         public NpcKill(IDevice device, IShip ship) : base(device, ship)
         {
             TimeoutInSeconds = 360;
@@ -22,8 +24,31 @@ namespace EveAssistant.Logic.Jobs.Actions
             ActionExits.Add((CommonActionExits.IsTargetLost, ExitFromAction));
         }
 
+        public void AfterExecute()
+        {
+            if (isAggressiveMode)
+            {
+                isAggressiveMode = false;
+
+                Device.Logger("Exit from NPC kill process");
+                FinishAction(ExitFromActionReason.ActionCompletedWithAggressiveMode);
+                return;
+            }
+
+            var unlockTargetButtonOnScreen = Device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, Device.Zones.SelectedItem);
+
+            if (unlockTargetButtonOnScreen.IsFound)
+            {
+                Device.Report("UnTarget");
+                Device.Logger("UnTarget execute.");
+                Device.Click(unlockTargetButtonOnScreen.PositionCenterRandom());
+            }
+        }
+
         public void CommandsExecute()
         {
+            isAggressiveMode = false;
+
             OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabNpc);
 
             var itemOnScreen = Device.FindObjectInScreen(Types.OverviewNps, Device.Zones.Overview);
@@ -44,6 +69,20 @@ namespace EveAssistant.Logic.Jobs.Actions
                 FinishAction(ExitFromActionReason.AllNpcAreKilled);
                 return;
             }
+
+            if (Device.FindObjectInScreen(Types.PanelSelectedItemNpcSkybreaker, Device.Zones.SelectedItem).IsFound)
+            {
+                Device.Logger("Enter to aggressive mode.");
+
+                Device.Report("SkybreakerFound");
+
+                isAggressiveMode = true;
+
+                var orbitButtonOnScreen = Device.FindObjectInScreen(Types.PanelSelectedOrbit, Device.Zones.SelectedItem);
+
+                Device.Click(orbitButtonOnScreen.PositionCenterRandom());
+            }
+
 
             while (Device.FindObjectInScreen(Types.PanelSelectedItemTargetDisabled, Device.Zones.SelectedItem).IsFound)
             {
@@ -68,7 +107,7 @@ namespace EveAssistant.Logic.Jobs.Actions
             }
             else
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "Timeout", Device.Logger);
+                Device.Report("Timeout");
                 Device.Logger($"Pattern '{Types.PanelSelectedItemTarget}' not found.");
                 FinishAction(ExitFromActionReason.Timeout);
                 return;
@@ -100,7 +139,7 @@ namespace EveAssistant.Logic.Jobs.Actions
                 if (lockTimeout > ReLockTimeoutInSeconds)
                 {
                     Device.Logger("Exit from action by timeout on re-lock target.");
-                    ScreenCapture.ScreenShot(Device.IntPtr, "ReLockTargetTimeout", Device.Logger);
+                    Device.Report("ReLockTargetTimeout");
                     FinishAction(ExitFromActionReason.Timeout);
                 }
             }
@@ -114,6 +153,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private void ExitFromAction()
         {
+            AfterExecute();
             Device.Logger("Exit from NPC kill process");
             FinishAction(ExitFromActionReason.ActionCompleted);
         }

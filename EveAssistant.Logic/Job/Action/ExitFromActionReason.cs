@@ -27,6 +27,8 @@
         AllNpcAreKilled,
         HarvestCompleted,
         LootNotFound,
-        Downtime
+        Downtime,
+        ActionCompletedWithAggressiveMode,
+        BudkaNotFound
     }
 }

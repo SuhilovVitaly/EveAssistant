@@ -2,3 +2,5 @@
 - Save farm results in separate files
 - Check is ship destroyed
 - Change `Approach to` command to `Orbit` in `WaveInitialization` action
+- Add configuration for Aggressive Mode in Kill MPC action
+- Station exit - set action after timeout

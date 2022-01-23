@@ -37,13 +37,15 @@ namespace EveAssistant.Logic.Jobs.Operations
                 }
                 else
                 {
-                    device.Mouse.ClickCentreScreen();
+                    device.Report("Pattern_FilamentActivateForFleet_NotFound");
+                    device.UnFocusClick();
                     return false;
                 }
             }
             else
             {
-                ScreenCapture.ScreenShot(device.IntPtr, "PatternNotFound", device.Logger);
+                device.Report($"Pattern_{Pattern.Replace("/", "_")}_NotFound");
+
                 device.Logger("[OperationUseTranquilFilament] Pattern not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
                 return false;
             }

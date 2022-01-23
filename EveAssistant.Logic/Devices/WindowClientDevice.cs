@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Threading.Tasks;
 using EveAssistant.Common;
 using EveAssistant.Common.Configuration;
@@ -47,6 +48,8 @@ namespace EveAssistant.Logic.Devices
         public void Click(Point point)
         {
             Mouse.Click(point);
+
+            Thread.Sleep(200);
         }
 
         public void Click(string typeOnScreen)

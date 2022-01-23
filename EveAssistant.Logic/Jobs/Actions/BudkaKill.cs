@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Threading;
+﻿using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Job.Action;
@@ -20,10 +19,15 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             ActionExits.Add((CommonActionExits.IsTargetLost, ExitFromActionKillBudka));
         }
+        public void AfterExecute()
+        {
 
+        }
         public void CommandsExecute()
         {
             OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabMove);
+
+            Thread.Sleep(2000);
 
             var itemOnScreen = Device.FindObjectInScreen(Types.OverviewAbissLootObject, Device.Zones.Overview);
 
@@ -39,7 +43,7 @@ namespace EveAssistant.Logic.Jobs.Actions
             }
             else
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "LootNotFound", Device.Logger);
+                Device.Report("LootNotFound");
                 Device.Logger($"Pattern '{Types.OverviewAbissLootObject}' not found.");
                 FinishAction(ExitFromActionReason.LootNotFound);
                 return;
@@ -57,13 +61,13 @@ namespace EveAssistant.Logic.Jobs.Actions
             }
             else
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "PatternNotFound", Device.Logger);
+                Device.Report("PatternItemTargetNotFound");
                 Device.Logger($"Pattern '{Types.PanelSelectedItemTarget}' not found.");
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
             }
 
-            Thread.Sleep(10000);
+            Thread.Sleep(5000);
 
             OperationOpenFire.Execute(Device, Ship);
         }

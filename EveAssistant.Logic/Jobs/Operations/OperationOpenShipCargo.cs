@@ -25,7 +25,7 @@ namespace EveAssistant.Logic.Jobs.Operations
             }
             else
             {
-                device.Mouse.ClickCentreScreen();
+                device.UnFocusClick();
 
                 device.Keyboard.PressKey(device.Shortcuts.OpenCargo);
             }

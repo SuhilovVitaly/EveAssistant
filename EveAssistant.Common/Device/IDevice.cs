@@ -46,5 +46,7 @@ namespace EveAssistant.Common.Device
         void Click(string typeOnScreen);
 
         void UnFocusClick();
+
+        void Report(string file);
     }
 }

@@ -27,6 +27,7 @@ namespace EveAssistant.Logic.Jobs.Operations
             }
             else
             {
+                device.Report("Pattern_StationExit_NotFound");
                 device.Logger("StationExit pattern is not found. Operation abort.");
                 return false;
             }

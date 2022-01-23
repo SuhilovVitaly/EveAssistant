@@ -17,7 +17,10 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             TimeoutInSeconds = 360;
         }
+        public void AfterExecute()
+        {
 
+        }
         public void CommandsExecute()
         {
             Thread.Sleep(2000);
@@ -30,7 +33,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (wreckOnScreen.IsFound == false)
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "PatternNotFound", Device.Logger);
+                Device.Report("Pattern_OverviewWreck_NotFound");
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
             }
@@ -47,7 +50,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (openCargoButtonOnScreen.IsFound == false)
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "PatternNotFound", Device.Logger);
+                Device.Report("Pattern_PanelSelectedOpenCargo_NotFound");
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
             }
@@ -71,7 +74,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (lootAllButtonOnScreen.IsFound == false)
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "PatternNotFound", Device.Logger);
+                Device.Report("Pattern_LootAll_NotFound");
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
             }

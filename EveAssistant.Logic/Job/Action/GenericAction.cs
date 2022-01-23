@@ -41,6 +41,7 @@ namespace EveAssistant.Logic.Job.Action
         }
 
         private bool inAction = false;
+        private int counter = 0;
 
         private void Event_Refresh(object sender, ElapsedEventArgs e)
         {
@@ -56,6 +57,21 @@ namespace EveAssistant.Logic.Job.Action
             {
                 ScreenCapture.ScreenShot(Device.IntPtr, "Timeout", Device.Logger);
                 FinishAction(ExitFromActionReason.Timeout);
+            }
+
+            // TODO: Remove to separate function or class
+            if (Device.Action == "[NpcKill]")
+            {
+                if (counter > 30)
+                {
+                    counter = 0;
+
+                    Device.Report("InProcess");
+                }
+
+                counter++;
+
+                return;
             }
 
             if (Reason != ExitFromActionReason.None) return;
