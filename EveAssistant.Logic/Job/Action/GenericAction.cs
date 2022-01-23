@@ -70,8 +70,6 @@ namespace EveAssistant.Logic.Job.Action
                 }
 
                 counter++;
-
-                return;
             }
 
             if (Reason != ExitFromActionReason.None) return;

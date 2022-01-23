@@ -431,25 +431,9 @@ namespace EveAssistant
             Close();
         }
 
-        private int counter = 0;
-
         private void Event_Refresh(object sender, EventArgs e)
         {
             if (Job is null) return;
-
-            if (Job.Device.Action == "[NpcKill]")
-            {
-                if (counter > 30)
-                {
-                    counter = 0;
-                    
-                    ScreenCapture.ScreenShot(_selectedGameClient.HWnd, "Time", LogWrite);
-                }
-
-                counter++;
-
-                return;
-            }
 
             txtJobWorkTime.Text = DateTime.Now.Subtract(Job.Device.Metrics.StartJobTime).ToString();
 
