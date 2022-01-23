@@ -17,6 +17,7 @@ namespace EveAssistant.Logic.Jobs
     {
         private const int TimeoutAfterJumpInGateInMs = 1000;
         private const int TimeoutAfterKillNpcShipInMs = 2000;
+        private const int TimeoutAfterStationExitMs = 5000;
         public CancellationTokenSource CancellationToken { get; set; } = new CancellationTokenSource();
 
         private Stopwatch MetricWorkTime { get; set; }
@@ -319,6 +320,7 @@ namespace EveAssistant.Logic.Jobs
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
+                    Thread.Sleep(TimeoutAfterStationExitMs);
                     ActionWarpToBookmark.Execute();
                     break;
                 case ExitFromActionReason.Timeout:

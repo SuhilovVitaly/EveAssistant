@@ -55,8 +55,8 @@ namespace EveAssistant.Logic.Job.Action
 
             if (WorkMetric.Elapsed.TotalSeconds > TimeoutInSeconds)
             {
-                ScreenCapture.ScreenShot(Device.IntPtr, "Timeout", Device.Logger);
                 FinishAction(ExitFromActionReason.Timeout);
+                return;
             }
 
             // TODO: Remove to separate function or class

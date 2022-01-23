@@ -15,7 +15,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private const int ReLockTimeoutInSeconds = 20;
 
-        private bool isAggressiveMode;
+        private bool _isAggressiveMode;
 
         public NpcKill(IDevice device, IShip ship) : base(device, ship)
         {
@@ -26,9 +26,9 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         public void AfterExecute()
         {
-            if (isAggressiveMode)
+            if (_isAggressiveMode)
             {
-                isAggressiveMode = false;
+                _isAggressiveMode = false;
 
                 Device.Logger("Exit from NPC kill process");
                 FinishAction(ExitFromActionReason.ActionCompletedWithAggressiveMode);
@@ -47,7 +47,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         public void CommandsExecute()
         {
-            isAggressiveMode = false;
+            _isAggressiveMode = false;
 
             OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabNpc);
 
@@ -76,13 +76,12 @@ namespace EveAssistant.Logic.Jobs.Actions
 
                 Device.Report("SkybreakerFound");
 
-                isAggressiveMode = true;
+                _isAggressiveMode = true;
 
                 var orbitButtonOnScreen = Device.FindObjectInScreen(Types.PanelSelectedOrbit, Device.Zones.SelectedItem);
 
                 Device.Click(orbitButtonOnScreen.PositionCenterRandom());
             }
-
 
             while (Device.FindObjectInScreen(Types.PanelSelectedItemTargetDisabled, Device.Zones.SelectedItem).IsFound)
             {
@@ -141,6 +140,7 @@ namespace EveAssistant.Logic.Jobs.Actions
                     Device.Logger("Exit from action by timeout on re-lock target.");
                     Device.Report("ReLockTargetTimeout");
                     FinishAction(ExitFromActionReason.Timeout);
+                    return;
                 }
             }
 

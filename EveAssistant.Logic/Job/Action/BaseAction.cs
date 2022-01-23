@@ -96,30 +96,5 @@ namespace EveAssistant.Logic.Job.Action
 
             return true;
         }
-
-        public void FinishAction(BasicActionResult result)
-        {
-            _crlRefreshMap.Enabled = false;
-
-            Logger($"is finished. Reason is {result.Type} Work time is {result.Seconds:N2} seconds.");
-
-            OnComplete?.Invoke(result);
-        }
-
-        public void ActionInitialization()
-        {
-            WorkMetric = Stopwatch.StartNew();
-
-            if (Device is null) return;
-
-            Device.Metrics.Action = Text;
-
-            _crlRefreshMap.Enabled = true;
-
-            Thread.Sleep(100);
-
-            Logger("is started.");
-        }
-
     }
 }
