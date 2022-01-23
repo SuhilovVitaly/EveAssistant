@@ -101,6 +101,7 @@ namespace EveAssistant
             this.label4 = new System.Windows.Forms.Label();
             this.txtWeaponReload = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
@@ -113,7 +114,7 @@ namespace EveAssistant
             this.button33 = new System.Windows.Forms.Button();
             this.button34 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button25 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -281,7 +282,7 @@ namespace EveAssistant
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(6, 324);
+            this.button5.Location = new System.Drawing.Point(6, 360);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(209, 23);
             this.button5.TabIndex = 154;
@@ -298,7 +299,7 @@ namespace EveAssistant
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(223, 324);
+            this.button6.Location = new System.Drawing.Point(223, 360);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(188, 23);
             this.button6.TabIndex = 155;
@@ -1050,6 +1051,7 @@ namespace EveAssistant
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Black;
+            this.tabPage2.Controls.Add(this.button26);
             this.tabPage2.Controls.Add(this.button25);
             this.tabPage2.Controls.Add(this.button24);
             this.tabPage2.Controls.Add(this.button23);
@@ -1079,6 +1081,23 @@ namespace EveAssistant
             this.tabPage2.Size = new System.Drawing.Size(417, 429);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Commands";
+            // 
+            // button25
+            // 
+            this.button25.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button25.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.button25.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button25.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button25.Location = new System.Drawing.Point(221, 290);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(190, 23);
+            this.button25.TabIndex = 172;
+            this.button25.Text = "Form Fleet";
+            this.button25.UseVisualStyleBackColor = false;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
             // 
             // button24
             // 
@@ -1245,22 +1264,22 @@ namespace EveAssistant
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Event_Refresh);
             // 
-            // button25
+            // button26
             // 
-            this.button25.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.button26.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button25.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.button25.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button25.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button25.Location = new System.Drawing.Point(221, 290);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(190, 23);
-            this.button25.TabIndex = 172;
-            this.button25.Text = "Form Fleet";
-            this.button25.UseVisualStyleBackColor = false;
-            this.button25.Click += new System.EventHandler(this.button25_Click);
+            this.button26.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.button26.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button26.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button26.Location = new System.Drawing.Point(6, 319);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(209, 23);
+            this.button26.TabIndex = 173;
+            this.button26.Text = "Loot Cargo";
+            this.button26.UseVisualStyleBackColor = false;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
             // 
             // ScreenMain
             // 
@@ -1382,6 +1401,7 @@ namespace EveAssistant
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button26;
     }
 }
 

@@ -16,14 +16,14 @@ namespace EveAssistant.Logic.Job.Action.Exit
             };
         }
 
-        public static CheckExitResult IsAllNpcKilled(IBasicAction action)
+        public static CheckExitResult IsLootCargoOpened(IBasicAction action)
         {
             if (action.Device.IsDebug)
-                action.Device.Logger("[Exits] Check is all nps are killed.");
+                action.Device.Logger("[Exits] Check is loot cargo opened.");
 
             return new CheckExitResult
             {
-                IsExitFromAction = action.Device.FindObjectInScreen(Types.ShipInAbiss).IsFound
+                IsExitFromAction = action.Device.FindObjectInScreen(Types.LootAll).IsFound
             };
         }
 

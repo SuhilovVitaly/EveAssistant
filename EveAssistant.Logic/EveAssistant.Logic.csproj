@@ -69,13 +69,16 @@
     <Compile Include="Jobs\Operations\OperationFormFleet.cs" />
     <Compile Include="Jobs\Operations\OperationItemHangarAll.cs" />
     <Compile Include="Jobs\Operations\OperationJumpToAbissGate.cs" />
+    <Compile Include="Jobs\Operations\OperationLootAll.cs" />
     <Compile Include="Jobs\Operations\OperationMoveLootToHangar.cs" />
+    <Compile Include="Jobs\Operations\OperationOpenCargo.cs" />
     <Compile Include="Jobs\Operations\OperationOpenFire.cs" />
     <Compile Include="Jobs\Operations\OperationEnterToTrace.cs" />
     <Compile Include="Jobs\Operations\OperationExitStation.cs" />
     <Compile Include="Jobs\Operations\OperationApproachToObject.cs" />
     <Compile Include="Jobs\Operations\OperationItemHangarFelaments.cs" />
     <Compile Include="Jobs\Operations\OperationOpenItemHangarFilters.cs" />
+    <Compile Include="Jobs\Operations\OperationSelectWreck.cs" />
     <Compile Include="Jobs\Operations\OperationSelectNpc.cs" />
     <Compile Include="Jobs\Operations\OperationOpenOverviewTab.cs" />
     <Compile Include="Jobs\Operations\OperationUseTranquilFilament.cs" />

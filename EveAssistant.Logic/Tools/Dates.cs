@@ -6,8 +6,8 @@ namespace EveAssistant.Logic.Tools
     {
         public static bool IsDownTime(DateTime datetime)
         {
-            TimeSpan start = new TimeSpan(11, 40, 0);
-            TimeSpan end = new TimeSpan(12, 10, 0);
+            TimeSpan start = new TimeSpan(10, 40, 0);
+            TimeSpan end = new TimeSpan(11, 10, 0);
             //, TimeSpan start, TimeSpan end
             // convert datetime to a TimeSpan
             var now = datetime.TimeOfDay;

@@ -78,5 +78,11 @@ namespace EveAssistant.Logic.Devices
                 (this as IDevice)?.Logger($"Critical error on save report. Exception message is '{ex.Message}'");
             }
         }
+
+        public void Report(string file, string message)
+        {
+            (this as IDevice)?.Logger(message);
+            Report(file);
+        }
     }
 }

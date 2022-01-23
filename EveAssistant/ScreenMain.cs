@@ -507,5 +507,23 @@ namespace EveAssistant
                 OperationFormFleet.Execute(device, ship);
             });
         }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            var (device, ship) = GetGeneralContext();
+
+            device.IsDebug = false;
+
+            Task.Run(() =>
+            {
+                Thread.Sleep(500);
+
+                BringToFront(device.IntPtr);
+
+                var action = new LootAllToCargo(device, ship);
+
+                action.Execute();
+            });
+        }
     }
 }

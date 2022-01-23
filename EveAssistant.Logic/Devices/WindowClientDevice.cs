@@ -62,6 +62,8 @@ namespace EveAssistant.Logic.Devices
             Mouse.Click(Zones.SafeUnFocusPoint);
         }
 
+        
+
         public void Logger(string message)
         {
             _logger($"[{Pilot}] {Job} {Action} " + message);

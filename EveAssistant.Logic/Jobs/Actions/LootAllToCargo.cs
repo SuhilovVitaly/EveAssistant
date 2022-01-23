@@ -1,11 +1,10 @@
-﻿using System.Drawing;
-using System.Threading;
+﻿using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Job.Action;
+using EveAssistant.Logic.Job.Action.Exit;
 using EveAssistant.Logic.Jobs.Operations;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs.Actions
 {
@@ -16,11 +15,15 @@ namespace EveAssistant.Logic.Jobs.Actions
         public LootAllToCargo(IDevice device, IShip ship) : base(device, ship)
         {
             TimeoutInSeconds = 360;
+
+            ActionExits.Add((CommonActionExits.IsLootCargoOpened, ExitFromAction));
         }
+
         public void AfterExecute()
         {
 
         }
+
         public void CommandsExecute()
         {
             Thread.Sleep(2000);
@@ -29,61 +32,28 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             Thread.Sleep(2000);
 
-            var wreckOnScreen = Device.FindObjectInScreen(Types.OverviewWreck, Device.Zones.Overview);
-
-            if (wreckOnScreen.IsFound == false)
+            if (OperationSelectWreck.Execute(Device, Ship) == false)
             {
-                Device.Report("Pattern_OverviewWreck_NotFound");
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
             }
 
-            TrafficDispatcher.ClickOnPoint(Device.IntPtr, wreckOnScreen.PositionCenterRandom());
-
-            Thread.Sleep(1000);
-
-            Device.UnFocusClick();
-
-            Thread.Sleep(1000);
-
-            var openCargoButtonOnScreen = Device.FindObjectInScreen(Types.PanelSelectedOpenCargo, Device.Zones.SelectedItem);
-
-            if (openCargoButtonOnScreen.IsFound == false)
+            if (OperationOpenCargo.Execute(Device, Ship) == false)
             {
-                Device.Report("Pattern_PanelSelectedOpenCargo_NotFound");
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
             }
 
-            TrafficDispatcher.ClickOnPoint(Device.IntPtr, openCargoButtonOnScreen.PositionCenterRandom());
+            Thread.Sleep(200);
+        }
 
-            Thread.Sleep(1000);
-
-            Device.UnFocusClick();
-
-            Thread.Sleep(1000);
-
-            while (!Device.FindObjectInScreen(Types.LootAll).IsFound)
+        private void ExitFromAction()
+        {
+            if (OperationLootAll.Execute(Device, Ship) == false)
             {
-                Device.Logger("Distance is long. Waiting...");
-
-                Thread.Sleep(1000);
-            }
-
-            var lootAllButtonOnScreen = Device.FindObjectInScreen(Types.LootAll);
-
-            if (lootAllButtonOnScreen.IsFound == false)
-            {
-                Device.Report("Pattern_LootAll_NotFound");
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
             }
-
-            TrafficDispatcher.ClickOnPoint(Device.IntPtr, lootAllButtonOnScreen.PositionCenterRandom());
-
-            Thread.Sleep(1000);
-
-            Device.UnFocusClick();
 
             FinishAction(ExitFromActionReason.ActionCompleted);
         }
