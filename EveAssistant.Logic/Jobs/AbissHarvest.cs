@@ -16,7 +16,7 @@ namespace EveAssistant.Logic.Jobs
     public class AbissHarvest
     {
         private const int TimeoutAfterJumpInGateInMs = 1000;
-        private const int TimeoutAfterKillNpcShipInMs = 2000;
+        private const int TimeoutAfterKillNpcShipInMs = 1000;
         private const int TimeoutAfterStationExitMs = 5000;
         public CancellationTokenSource CancellationToken { get; set; } = new CancellationTokenSource();
 

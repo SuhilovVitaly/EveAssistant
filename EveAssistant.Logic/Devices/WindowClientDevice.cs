@@ -66,11 +66,7 @@ namespace EveAssistant.Logic.Devices
         {
             Mouse.Click(point);
 
-            Thread.Sleep(1000);
-
             UnFocusClick();
-
-            Thread.Sleep(1000);
         }
 
 

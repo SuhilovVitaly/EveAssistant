@@ -35,11 +35,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (itemOnScreen.IsFound)
             {
-                TrafficDispatcher.ClickOnPoint(Device.IntPtr, itemOnScreen.PositionCenterRandom());
-
-                Thread.Sleep(1000);
-
-                Device.UnFocusClick();
+                Device.ClickAndReturn(itemOnScreen.PositionCenterRandom());
             }
             else
             {
@@ -53,11 +49,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (itemOnScreen.IsFound)
             {
-                TrafficDispatcher.ClickOnPoint(Device.IntPtr, selectedItemOnScreen.PositionCenterRandom());
-
-                Thread.Sleep(1000);
-
-                Device.UnFocusClick();
+                Device.ClickAndReturn(selectedItemOnScreen.PositionCenterRandom());
             }
             else
             {
@@ -67,7 +59,7 @@ namespace EveAssistant.Logic.Jobs.Actions
                 return;
             }
 
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
 
             OperationOpenFire.Execute(Device, Ship);
         }

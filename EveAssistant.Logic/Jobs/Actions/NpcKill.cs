@@ -5,7 +5,6 @@ using EveAssistant.Logic.Job.Action;
 using EveAssistant.Logic.Job.Action.Exit;
 using EveAssistant.Logic.Jobs.Operations;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs.Actions
 {
@@ -37,7 +36,7 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             _isAggressiveMode = false;
 
-            Thread.Sleep(3000);
+            Thread.Sleep(500);
 
             OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabNpc);
 
@@ -116,12 +115,11 @@ namespace EveAssistant.Logic.Jobs.Actions
                 }
             }
 
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             if (Device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, Device.Zones.SelectedItem).IsFound == false)
             {
                 Device.Report("ItemUnLockTargetNotFound", $"Pattern '{Types.PanelSelectedItemUnLockTarget}' not found.");
-
                 FinishAction(ExitFromActionReason.Timeout);
                 return;
             }

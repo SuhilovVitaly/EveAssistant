@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics;
-using System.Drawing;
 using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs.Operations
 {
@@ -13,7 +11,7 @@ namespace EveAssistant.Logic.Jobs.Operations
         {
             device.UnFocusClick();
 
-            Thread.Sleep(1000);
+            Thread.Sleep(200);
 
             var workMetric = Stopwatch.StartNew();
 
