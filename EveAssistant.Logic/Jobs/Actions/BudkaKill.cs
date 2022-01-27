@@ -5,7 +5,6 @@ using EveAssistant.Logic.Job.Action;
 using EveAssistant.Logic.Job.Action.Exit;
 using EveAssistant.Logic.Jobs.Operations;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs.Actions
 {
@@ -66,6 +65,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private void ExitFromActionKillBudka()
         {
+            Device.Keyboard.PressKey(Device.Shortcuts.ShipStop);
+
             Device.Logger("Exit from BUDKA kill process");
             FinishAction(ExitFromActionReason.ActionCompleted);
         }
