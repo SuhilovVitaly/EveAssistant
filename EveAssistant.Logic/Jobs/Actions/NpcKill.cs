@@ -22,7 +22,7 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             TimeoutInSeconds = 360;
 
-            isUseAggressiveMode = false;
+            isUseAggressiveMode = true;
 
             ActionExits.Add((CommonActionExits.IsTargetLost, ExitFromAction));
         }

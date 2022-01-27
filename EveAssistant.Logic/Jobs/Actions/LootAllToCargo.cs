@@ -14,7 +14,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         public LootAllToCargo(IDevice device, IShip ship) : base(device, ship)
         {
-            TimeoutInSeconds = 360;
+            TimeoutInSeconds = 60;
 
             ActionExits.Add((CommonActionExits.IsLootCargoOpened, ExitFromAction));
         }
@@ -26,15 +26,14 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         public void CommandsExecute()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabLoot);
 
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             if (OperationSelectWreck.Execute(Device, Ship) == false)
             {
-
                 var wreckOnScreen = Device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, Device.Zones.Overview);
 
                 if (wreckOnScreen.IsFound)
