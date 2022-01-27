@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using EveAssistant.Common.Device;
+﻿using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Ships;
 
@@ -9,7 +8,7 @@ namespace EveAssistant.Logic.Jobs.Operations
     {
         public static string Name { get; set; } = "[OperationLootAll]";
 
-        public static bool Execute(IDevice device, IShip ship)
+        public static bool Execute(IDevice device)
         {
             var lootAllButtonOnScreen = device.FindObjectInScreen(Types.LootAll);
 
@@ -21,11 +20,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 
             device.Logger($"[{Name}] LootAll button found. Click on {lootAllButtonOnScreen.PositionCenter}");
 
-            device.Click(lootAllButtonOnScreen.PositionCenterRandom());
-
-            Thread.Sleep(1000);
-
-            device.UnFocusClick();
+            device.ClickAndReturn(lootAllButtonOnScreen.PositionCenterRandom());
 
             return true;
         }

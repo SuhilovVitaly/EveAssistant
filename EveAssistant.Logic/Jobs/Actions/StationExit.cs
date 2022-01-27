@@ -18,10 +18,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             ActionExits.Add((CommonActionExits.IsShipInSpace, ExitFromActionIfShipInSpace));
         }
-        public void AfterExecute()
-        {
 
-        }
         public void CommandsExecute()
         {
             Device.Metrics.StartCycleTime = DateTime.Now;

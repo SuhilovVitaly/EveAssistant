@@ -13,10 +13,7 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             TimeoutInSeconds = 50;
         }
-        public void AfterExecute()
-        {
-            
-        }
+
         public void CommandsExecute()
         {
             Device.Mouse.ClickCentreScreen();

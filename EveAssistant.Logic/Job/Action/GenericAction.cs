@@ -39,6 +39,11 @@ namespace EveAssistant.Logic.Job.Action
             _crlRefreshMap.Enabled = false;
         }
 
+        public void AfterExecute()
+        {
+
+        }
+
         private bool inAction = false;
         private int counter = 0;
 

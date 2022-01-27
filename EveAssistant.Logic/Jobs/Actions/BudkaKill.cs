@@ -18,10 +18,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             ActionExits.Add((CommonActionExits.IsTargetLost, ExitFromActionKillBudka));
         }
-        public void AfterExecute()
-        {
 
-        }
         public void CommandsExecute()
         {
             OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabMove);

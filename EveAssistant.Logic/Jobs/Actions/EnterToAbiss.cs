@@ -19,10 +19,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             ActionExits.Add((CommonActionExits.IsShipInAbiss, ExitFromAction));
         }
-        public void AfterExecute()
-        {
 
-        }
         public void CommandsExecute()
         {
             Device.UnFocusClick();

@@ -27,11 +27,6 @@ namespace EveAssistant.Logic.Jobs.Actions
             ActionExits.Add((CommonActionExits.IsTargetLost, ExitFromAction));
         }
 
-        public void AfterExecute()
-        {
-            
-        }
-
         public void CommandsExecute()
         {
             _isAggressiveMode = false;

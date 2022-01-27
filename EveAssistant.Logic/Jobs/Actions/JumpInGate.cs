@@ -20,10 +20,6 @@ namespace EveAssistant.Logic.Jobs.Actions
             ActionExits.Add((CommonActionExits.IsShipNotMovingToGate, ExitFromAction));
         }
 
-        public void AfterExecute()
-        {
-
-        }
         public void CommandsExecute()
         {
             Thread.Sleep(2000);

@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using EveAssistant.Common.Device;
+﻿using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Job.Action;
 using EveAssistant.Logic.Jobs.Operations;
@@ -15,10 +14,7 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             TimeoutInSeconds = 40;
         }
-        public void AfterExecute()
-        {
 
-        }
         public void CommandsExecute()
         {
             Device.UnFocusClick();

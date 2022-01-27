@@ -19,11 +19,6 @@ namespace EveAssistant.Logic.Jobs.Actions
             ActionExits.Add((CommonActionExits.IsLootCargoOpened, ExitFromAction));
         }
 
-        public void AfterExecute()
-        {
-
-        }
-
         public void CommandsExecute()
         {
             Thread.Sleep(1000);
@@ -63,7 +58,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private void ExitFromAction()
         {
-            if (OperationLootAll.Execute(Device, Ship) == false)
+            if (OperationLootAll.Execute(Device) == false)
             {
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
