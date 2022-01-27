@@ -78,9 +78,11 @@
     <Compile Include="Jobs\Operations\OperationApproachToObject.cs" />
     <Compile Include="Jobs\Operations\OperationItemHangarFelaments.cs" />
     <Compile Include="Jobs\Operations\OperationOpenItemHangarFilters.cs" />
+    <Compile Include="Jobs\Operations\OperationOrbitObject.cs" />
     <Compile Include="Jobs\Operations\OperationSelectWreck.cs" />
     <Compile Include="Jobs\Operations\OperationSelectNpc.cs" />
     <Compile Include="Jobs\Operations\OperationOpenOverviewTab.cs" />
+    <Compile Include="Jobs\Operations\OperationUnlockTarget.cs" />
     <Compile Include="Jobs\Operations\OperationUseTranquilFilament.cs" />
     <Compile Include="Jobs\Operations\OperationWarpToBookmark.cs" />
     <Compile Include="Jobs\Operations\OperationClearBackground.cs" />

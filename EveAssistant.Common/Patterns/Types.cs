@@ -64,6 +64,8 @@
         public const string BookmarksAbissHarvest = "Point_1";
         public const string TacticalOverview = "TacticalOverview";
 
+        public const string WindowCantActivateGate = "Window/CantActivateGate/Window";
+        public const string WindowExitCantActivateGate = "Window/CantActivateGate/Exit";
 
         public const string LootAll = "LootAll";
         //

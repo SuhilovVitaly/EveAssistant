@@ -17,31 +17,24 @@ namespace EveAssistant.Logic.Jobs.Operations
 
             var itemOnScreen = device.FindObjectInScreen(pattern);
 
-            if (itemOnScreen.IsFound)
+            if (itemOnScreen.IsFound == false)
             {
-                TrafficDispatcher.ClickOnPoint(device.IntPtr, itemOnScreen.PositionCenterRandom());
-
-                Thread.Sleep(1000);
-
-                var itemApproach = device.FindObjectInScreen(Types.PanelSelectedItemApproach);
-
-                if (itemApproach.IsFound)
-                {
-                    TrafficDispatcher.ClickOnPoint(device.IntPtr, itemApproach.PositionCenterRandom());
-                }
-                else
-                {
-                    device.Report("Pattern_PanelSelectedItemApproach_NotFound");
-                    device.Logger($"[OperationApproachToObject] Pattern {Types.PanelSelectedItemApproach} not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
-                    return false;
-                }
-            }
-            else
-            {
-                device.Report($"Pattern_{pattern.Replace("/","_")}_NotFound");
-                device.Logger($"[OperationApproachToObject] Pattern {pattern} not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
+                device.Report($"Pattern_{pattern.Replace("/", "_")}_NotFound", $"[OperationApproachToObject] Pattern {pattern} not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
                 return false;
             }
+
+            device.ClickAndReturn(itemOnScreen.PositionCenterRandom(), $"Pattern '{pattern}' is found.");
+
+            var itemApproach = device.FindObjectInScreen(Types.PanelSelectedItemApproach);
+
+            if (itemApproach.IsFound == false)
+            {
+                device.Report("Approach_NotFound");
+                device.Logger($"[OperationApproachToObject] Pattern {Types.PanelSelectedItemApproach} not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
+                return false;
+            }
+
+            device.ClickAndReturn(itemApproach.PositionCenterRandom(), $"Pattern 'Approach' is found. Emulate click.");
 
             return true;
         }

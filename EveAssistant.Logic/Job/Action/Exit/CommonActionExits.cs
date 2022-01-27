@@ -38,6 +38,17 @@ namespace EveAssistant.Logic.Job.Action.Exit
             };
         }
 
+        public static CheckExitResult IsCantActivateGate(IBasicAction action)
+        {
+            if (action.Device.IsDebug)
+                action.Device.Logger("[Exits] Check is can't activate gate.");
+
+            return new CheckExitResult
+            {
+                IsExitFromAction = action.Device.FindObjectInScreen(Types.WindowCantActivateGate).IsFound
+            };
+        }
+
         public static CheckExitResult IsShipNotMovingToGate(IBasicAction action)
         {
             if (action.Device.IsDebug)

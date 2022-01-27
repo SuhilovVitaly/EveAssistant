@@ -5,7 +5,6 @@ using System.Timers;
 using EveAssistant.Common.Device;
 using EveAssistant.Logic.Job.Action.Exit;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Job.Action
 {

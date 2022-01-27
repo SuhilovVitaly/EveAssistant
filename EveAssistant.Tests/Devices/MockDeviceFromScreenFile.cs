@@ -58,6 +58,16 @@ namespace EveAssistant.Tests.Devices
             throw new NotImplementedException();
         }
 
+        public void ClickAndReturn(Point point, string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ClickAndReturn(Point point)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Click(string typeOnScreen)
         {
             throw new NotImplementedException();

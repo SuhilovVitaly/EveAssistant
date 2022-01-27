@@ -28,7 +28,9 @@
         HarvestCompleted,
         LootNotFound,
         Downtime,
+        CantActivateGate,
         ActionCompletedWithAggressiveMode,
-        BudkaNotFound
+        BudkaNotFound,
+        RestartKillNpc
     }
 }

@@ -15,28 +15,17 @@ namespace EveAssistant.Logic.Jobs.Operations
 
             Thread.Sleep(1000);
 
-            device.Logger($"Start open overview tab '{pattern}'.");
-
             var workMetric = Stopwatch.StartNew();
 
             var itemOnScreen = device.FindObjectInScreen(pattern);
 
-            if (itemOnScreen.IsFound)
-            {
-                TrafficDispatcher.ClickOnPoint(device.IntPtr, itemOnScreen.PositionCenterRandom());
-
-                Thread.Sleep(500);
-
-                device.UnFocusClick();
-            }
-            else
+            if (itemOnScreen.IsFound == false)
             {
                 device.Logger($"'{pattern}' pattern is not found. Operation abort.");
                 return false;
             }
-            Thread.Sleep(200);
 
-            device.Logger($"Finish open overview tab '{pattern}'. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
+            device.ClickAndReturn(itemOnScreen.PositionCenterRandom(), $"Pattern '{pattern}' is found. Emulate click. Work time is {workMetric.Elapsed.TotalSeconds:N2}");
 
             return true;
         }

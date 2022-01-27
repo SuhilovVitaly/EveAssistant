@@ -23,13 +23,11 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             Device.UnFocusClick();
 
+            OperationUnlockTarget.Execute(Device);
+
             OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabMove);
 
-            Thread.Sleep(1000);
-
-            OperationApproachToObject.Execute(Device, Ship, Types.OverviewAbissLootObject);
-
-            Thread.Sleep(1000);
+            OperationOrbitObject.Execute(Device, Types.OverviewAbissLootObject);
 
             FinishAction(ExitFromActionReason.ActionCompleted);
         }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
@@ -8,7 +6,6 @@ using EveAssistant.Logic.Job.Action;
 using EveAssistant.Logic.Job.Action.Exit;
 using EveAssistant.Logic.Jobs.Operations;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs.Actions
 {
@@ -34,8 +31,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (OperationUseTranquilFilament.Execute(Device, Ship) == false)
             {
-                Device.Report("Pattern_OverviewTabGates_NotFound");
-                Device.Logger("[OperationUseTranquilFilament] fail.");
+                Device.Report("Pattern_OverviewTabGates_NotFound", "[OperationUseTranquilFilament] fail.");
                 FinishAction(ExitFromActionReason.Timeout);
                 return;
             }
@@ -44,10 +40,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (OperationEnterToTrace.Execute(Device, Ship) == false)
             {
-                Device.Report("Pattern_AbissGate_NotFound");
-                Device.Logger("[OperationEnterToTrace] fail.");
-
-                Device.Mouse.Click(new Point(600, 395));
+                Device.Report("Pattern_AbissGate_NotFound", "[OperationEnterToTrace] fail.");
+                Device.UnFocusClick();
                 FinishAction(ExitFromActionReason.Timeout);
                 return;
             }

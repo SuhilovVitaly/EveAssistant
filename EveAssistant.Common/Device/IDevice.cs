@@ -43,6 +43,10 @@ namespace EveAssistant.Common.Device
 
         void Click(Point point);
 
+        void ClickAndReturn(Point point, string message);
+
+        void ClickAndReturn(Point point);
+
         void Click(string typeOnScreen);
 
         void UnFocusClick();

@@ -66,6 +66,9 @@
     <None Update="Screens\InAbiss\Screen_637777913850525373.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Screens\InAbiss\Screen_637787575522338250.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Screens\InDock\Screen_637776672158891886.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -111,10 +114,6 @@
     <None Update="Screens\Screen_637773521468868455.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Screens\NewFolder\" />
   </ItemGroup>
 
 </Project>

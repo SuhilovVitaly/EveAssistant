@@ -3,12 +3,12 @@ using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs.Operations
 {
     public class OperationExitStation
     {
+        public static string Name { get; set; } = "[OperationExitStation]";
         private const string Pattern = Types.StationExit;
 
         public static bool Execute(IDevice device, IShip ship)
@@ -23,17 +23,19 @@ namespace EveAssistant.Logic.Jobs.Operations
 
             if (itemOnScreen.IsFound)
             {
-                TrafficDispatcher.ClickOnPoint(device.IntPtr, itemOnScreen.PositionCenterRandom());
+                device.Click(itemOnScreen.PositionCenterRandom());
             }
             else
             {
-                device.Report("Pattern_StationExit_NotFound");
-                device.Logger("StationExit pattern is not found. Operation abort.");
+                device.Report("Pattern_StationExit_NotFound", "StationExit pattern is not found. Operation abort.");
                 return false;
             }
+
+            device.Logger($"[{Name}] LootAll button found. Click on {itemOnScreen.PositionCenter}");
+
             Thread.Sleep(200);
 
-            device.Logger("Finish clear background. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
+            device.Logger($"[{Name}] Finish. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
 
             return true;
         }

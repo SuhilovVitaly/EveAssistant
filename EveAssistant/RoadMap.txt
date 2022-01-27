@@ -4,4 +4,4 @@
 - Change `Approach to` command to `Orbit` in `WaveInitialization` action
 - Add configuration for Aggressive Mode in Kill MPC action
 - Add timeout configurations
-+ Station exit - set action after timeout
+- Can't activate result

@@ -525,5 +525,41 @@ namespace EveAssistant
                 action.Execute();
             });
         }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            var (device, ship) = GetGeneralContext();
+
+            device.IsDebug = false;
+
+            Task.Run(() =>
+            {
+                Thread.Sleep(500);
+
+                BringToFront(device.IntPtr);
+
+                var action = new WaveInitialization(device, ship);
+
+                action.Execute();
+            });
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            var (device, ship) = GetGeneralContext();
+
+            device.IsDebug = false;
+
+            Task.Run(() =>
+            {
+                Thread.Sleep(500);
+
+                BringToFront(device.IntPtr);
+
+                var action = new JumpInGate(device, ship);
+
+                action.Execute();
+            });
+        }
     }
 }

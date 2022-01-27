@@ -15,6 +15,8 @@ namespace EveAssistant.Logic.Jobs.Operations
         {
             device.Logger("[OperationWarpToBookmark] Start warp to bookmark.");
 
+            Thread.Sleep(3000);
+
             var workMetric = Stopwatch.StartNew();
 
             var itemOnScreen = device.FindObjectInScreen(Pattern + bookmark);

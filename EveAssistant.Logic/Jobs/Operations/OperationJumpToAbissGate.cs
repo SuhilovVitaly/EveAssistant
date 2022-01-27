@@ -1,9 +1,6 @@
 ﻿using System.Diagnostics;
-using System.Drawing;
-using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs.Operations
 {
@@ -19,42 +16,26 @@ namespace EveAssistant.Logic.Jobs.Operations
 
             var itemOnScreen = device.FindObjectInScreen(Pattern);
 
-            if (itemOnScreen.IsFound)
+            if (itemOnScreen.IsFound == false)
             {
-                TrafficDispatcher.ClickOnPoint(device.IntPtr, itemOnScreen.PositionCenterRandom());
-
-                Thread.Sleep(200);
-
-                var itemActivateGate = device.FindObjectInScreen(@"Panel/SelectedItem/ActivateGate");
-
-                if (itemActivateGate.IsFound)
-                {
-                    TrafficDispatcher.ClickOnPoint(device.IntPtr, itemActivateGate.PositionCenterRandom());
-
-                    Thread.Sleep(1000);
-
-                    device.UnFocusClick();
-
-                    Thread.Sleep(4000);
-                }
-                else
-                {
-                    device.Report("Pattern_ActivateGate_NotFound");
-                    device.Logger("[OperationEnterToTrace] 'Panel/SelectedItem/ActivateGate' not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
-
-                    return false;
-                }
-            }
-            else
-            {
-                device.Report($"Pattern_{Pattern.Replace("/", "_")}_NotFound");
-                device.Logger($"[OperationEnterToTrace] {Pattern} not found. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
+                device.Report($"Pattern_{Pattern.Replace("/", "_")}_NotFound", 
+                    $"[OperationEnterToTrace] {Pattern} not found. Work time is {workMetric.Elapsed.TotalSeconds:N2} seconds.");
                 return false;
             }
 
-            Thread.Sleep(200);
+            device.ClickAndReturn(itemOnScreen.PositionCenterRandom());
 
-            device.Logger("[OperationEnterToTrace] Finish warp to bookmark. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
+            var itemActivateGate = device.FindObjectInScreen(@"Panel/SelectedItem/ActivateGate");
+
+            if (itemActivateGate.IsFound == false)
+            {
+                device.Report("Pattern_ActivateGate_NotFound", 
+                    $"[OperationEnterToTrace] 'Panel/SelectedItem/ActivateGate' not found. Work time is {workMetric.Elapsed.TotalSeconds:N2} seconds.");
+                return false;
+            }
+
+            device.ClickAndReturn(itemActivateGate.PositionCenterRandom(), 
+                $"[OperationEnterToTrace] Finish jump. Work time is {workMetric.Elapsed.TotalSeconds:N2} seconds.");
 
             return true;
         }

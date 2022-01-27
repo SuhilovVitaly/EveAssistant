@@ -133,7 +133,13 @@ namespace EveAssistant.Logic.Jobs
                     ActionWaveInitialization.Execute();
                     break;
 
+                case ExitFromActionReason.CantActivateGate:
+                    Thread.Sleep(3000);
+                    ActionWaveInitialization.Execute();
+                    break;
+
                 default:
+                    Thread.Sleep(3000);
                     ActionWaveInitialization.Execute();
                     break;
             }
@@ -155,6 +161,10 @@ namespace EveAssistant.Logic.Jobs
 
                 case ExitFromActionReason.PatternNotFound:
                     ActionJumpInGate.Execute();
+                    break;
+
+                case ExitFromActionReason.RestartKillNpc:
+                    ActionWaveInitialization.Execute();
                     break;
 
                 default:
@@ -218,17 +228,17 @@ namespace EveAssistant.Logic.Jobs
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompletedWithAggressiveMode:
-                    LogWrite($"Killed one nps.");
+                    LogWrite($"Killed one nps with ActionCompletedWithAggressiveMode.");
                     ActionJumpInGate.Execute();
                     break;
 
                 case ExitFromActionReason.ActionCompleted:
-                    LogWrite($"Killed one nps.");
+                    LogWrite($"Killed one nps with ActionCompleted.");
                     Thread.Sleep(TimeoutAfterKillNpcShipInMs);
                     RunNpcKillAction();
                     break;
                 case ExitFromActionReason.AllNpcAreKilled:
-                    LogWrite($"Killed all nps.");
+                    LogWrite($"Killed all nps with AllNpcAreKilled.");
                     Thread.Sleep(TimeoutAfterKillNpcShipInMs);
                     RunLootObjectKillAction();
                     break;
@@ -241,6 +251,13 @@ namespace EveAssistant.Logic.Jobs
                 case ExitFromActionReason.ObjectInOverviewNotFound:
                     RunNpcKillAction();
                     break;
+
+                case ExitFromActionReason.CantActivateGate:
+                    LogWrite($"CantActivateGate.");
+                    Thread.Sleep(TimeoutAfterKillNpcShipInMs);
+                    RunNpcKillAction();
+                    break;
+
                 default:
                     RunNpcKillAction();
                     break;

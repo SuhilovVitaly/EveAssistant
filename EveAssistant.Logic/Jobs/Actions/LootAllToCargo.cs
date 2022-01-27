@@ -34,6 +34,21 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (OperationSelectWreck.Execute(Device, Ship) == false)
             {
+
+                var wreckOnScreen = Device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, Device.Zones.Overview);
+
+                if (wreckOnScreen.IsFound)
+                {
+                    Device.Logger($"[{Text}] UnLockTarget found. Click on {wreckOnScreen.PositionCenter}");
+
+                    Device.Click(wreckOnScreen.PositionCenterRandom());
+
+                    Thread.Sleep(2000);
+
+                    FinishAction(ExitFromActionReason.RestartKillNpc);
+                    return;
+                }
+
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
             }

@@ -465,6 +465,12 @@
     <Content Include="Patterns\Station\Undock\005.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Patterns\Window\CantActivateGate\Exit\01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patterns\Window\CantActivateGate\Window\01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Patterns\Window\Icons\01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

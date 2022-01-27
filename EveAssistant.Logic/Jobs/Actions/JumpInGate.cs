@@ -1,12 +1,10 @@
-﻿using System.Drawing;
-using System.Threading;
+﻿using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Job.Action;
 using EveAssistant.Logic.Job.Action.Exit;
 using EveAssistant.Logic.Jobs.Operations;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs.Actions
 {
@@ -16,10 +14,12 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         public JumpInGate(IDevice device, IShip ship) : base(device, ship)
         {
-            TimeoutInSeconds = 360;
+            TimeoutInSeconds = 420;
 
+            ActionExits.Add((CommonActionExits.IsCantActivateGate, ExitFromActionCantActivateGate));
             ActionExits.Add((CommonActionExits.IsShipNotMovingToGate, ExitFromAction));
         }
+
         public void AfterExecute()
         {
 
@@ -34,8 +34,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             if (OperationJumpToAbissGate.Execute(Device, Ship) == false)
             {
-                Device.Report("Pattern_OverviewAbissGate_NotFound");
-                Device.Logger("[OperationEnterToTrace] fail.");
+                Device.Report("Pattern_OverviewAbissGate_NotFound", "[OperationEnterToTrace] fail.");
                 FinishAction(ExitFromActionReason.Timeout);
                 return;
             }
@@ -50,6 +49,24 @@ namespace EveAssistant.Logic.Jobs.Actions
             Device.Logger($"Exit from {Text} process");
 
             FinishAction(ExitFromActionReason.ActionCompleted);
+        }
+
+        private void ExitFromActionCantActivateGate()
+        {
+            Device.Logger($"Exit from {Text} process on 'CantActivateGate'");
+
+            var itemOnScreen = Device.FindObjectInScreen(Types.WindowExitCantActivateGate);
+
+            if (itemOnScreen.IsFound)
+            {
+                Device.Logger($"[{Text}] Exit button found on screen. Click on {itemOnScreen.PositionCenter}");
+
+                Device.Click(itemOnScreen.PositionCenterRandom());
+
+                Thread.Sleep(2000);
+            }
+
+            FinishAction(ExitFromActionReason.CantActivateGate);
         }
     }
 }

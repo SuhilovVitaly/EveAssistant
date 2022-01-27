@@ -52,6 +52,28 @@ namespace EveAssistant.Logic.Devices
             Thread.Sleep(200);
         }
 
+        public void ClickAndReturn(Point point, string message = "")
+        {
+            ClickAndReturn(point);
+
+            if (string.IsNullOrEmpty(message) == false)
+            {
+                Logger(message);
+            }
+        }
+
+        public void ClickAndReturn(Point point)
+        {
+            Mouse.Click(point);
+
+            Thread.Sleep(1000);
+
+            UnFocusClick();
+
+            Thread.Sleep(1000);
+        }
+
+
         public void Click(string typeOnScreen)
         {
             Mouse.Click(FindObjectInScreen(typeOnScreen).PositionCenterRandom());
