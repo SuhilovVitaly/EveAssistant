@@ -1,0 +1,30 @@
+﻿namespace EveAssistant.Logic.Jobs.Operations
+{
+    public enum OperationTypes
+    {
+        ApproachToObject,
+        ClearBackground,
+        DockToBookmark,
+        EnableActiveModules,
+        EnterToTrace,
+        ExitStation,
+        FormFleet,
+        ItemHangarAll,
+        ItemHangarFilterFilaments,
+        JumpToAbissGate,
+        LootAll,
+        MoveFilamentToCargo,
+        MoveLootToHangar,
+        OpenCargo,
+        OpenFire,
+        OpenItemHangarFilters,
+        OpenOverviewTab,
+        OpenShipCargo,
+        OrbitObject,
+        SelectNpc,
+        SelectWreck,
+        UnlockTarget,
+        UseTranquilFilament,
+        WarpToBookmark
+    }
+}

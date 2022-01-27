@@ -23,11 +23,11 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             Thread.Sleep(1000);
 
-            OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabLoot);
+            OperationsManager.Execute(OperationTypes.OpenOverviewTab, Device, Ship, Types.OverviewTabLoot);
 
             Thread.Sleep(1000);
 
-            if (OperationSelectWreck.Execute(Device, Ship) == false)
+            if (OperationsManager.Execute(OperationTypes.SelectWreck, Device, Ship) == false)
             {
                 var wreckOnScreen = Device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, Device.Zones.Overview);
 
@@ -47,7 +47,7 @@ namespace EveAssistant.Logic.Jobs.Actions
                 return;
             }
 
-            if (OperationOpenCargo.Execute(Device, Ship) == false)
+            if (OperationsManager.Execute(OperationTypes.OpenCargo, Device, Ship) == false)
             {
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;
@@ -58,7 +58,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private void ExitFromAction()
         {
-            if (OperationLootAll.Execute(Device) == false)
+            if (OperationsManager.Execute(OperationTypes.LootAll, Device, Ship) == false)
             {
                 FinishAction(ExitFromActionReason.PatternNotFound);
                 return;

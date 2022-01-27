@@ -9,7 +9,7 @@ namespace EveAssistant.Logic.Jobs.Operations
     {
         public static string Name { get; set; } = "[OperationSelectWreck]";
 
-        public static bool Execute(IDevice device, IShip ship)
+        public bool Execute(IDevice device, IShip ship)
         {
             var wreckOnScreen = device.FindObjectInScreen(Types.OverviewWreck, device.Zones.Overview);
 

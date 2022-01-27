@@ -287,7 +287,7 @@ namespace EveAssistant.Logic.Jobs
             switch (actionResult.Type)
             {
                 case ExitFromActionReason.ActionCompleted:
-                    OperationEnableActiveModules.Execute(Device, Ship);
+                    OperationsManager.Execute(OperationTypes.EnableActiveModules, Device, Ship);
                     ActionWaveInitialization.Execute();
                     break;
                 case ExitFromActionReason.Timeout:

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
+using EveAssistant.Logic.Ships;
 
 namespace EveAssistant.Logic.Jobs.Operations
 {
@@ -9,7 +10,7 @@ namespace EveAssistant.Logic.Jobs.Operations
         private const string Name = "[OperationOrbitObject]";
         private const string OrbitButtonPattern = Types.PanelSelectedOrbit;
 
-        public static bool Execute(IDevice device, string pattern)
+        public  bool Execute(IDevice device, IShip ship, string pattern)
         {
             device.Logger($"{Name} Start.");
 

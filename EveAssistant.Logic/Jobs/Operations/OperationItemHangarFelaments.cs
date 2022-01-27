@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Drawing;
 using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Logic.Ships;
@@ -12,7 +11,7 @@ namespace EveAssistant.Logic.Jobs.Operations
         private const string Pattern = @"ItemHangar/FilterFlmDesabled";
         private const string PatternFilterAll = @"ItemHangar/FilterAllEnabled";
 
-        public static bool Execute(IDevice device, IShip ship)
+        public bool Execute(IDevice device, IShip ship)
         {
             device.UnFocusClick();
 

@@ -24,9 +24,9 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             Device.UnFocusClick();
 
-            OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabGates);
+            OperationsManager.Execute(OperationTypes.OpenOverviewTab, Device, Ship, Types.OverviewTabGates);
 
-            if (OperationUseTranquilFilament.Execute(Device, Ship) == false)
+            if (OperationsManager.Execute(OperationTypes.UseTranquilFilament, Device, Ship) == false)
             {
                 Device.Report("Pattern_OverviewTabGates_NotFound", "[OperationUseTranquilFilament] fail.");
                 FinishAction(ExitFromActionReason.Timeout);
@@ -35,7 +35,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             Thread.Sleep(5000);
 
-            if (OperationEnterToTrace.Execute(Device, Ship) == false)
+            if (OperationsManager.Execute(OperationTypes.EnterToTrace, Device, Ship) == false)
             {
                 Device.Report("Pattern_AbissGate_NotFound", "[OperationEnterToTrace] fail.");
                 Device.UnFocusClick();

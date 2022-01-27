@@ -11,7 +11,7 @@ namespace EveAssistant.Logic.Jobs.Operations
     {
         private const string Pattern = @"Filament/Electrical";
 
-        public static bool Execute(IDevice device, IShip ship)
+        public bool Execute(IDevice device, IShip ship)
         {
             device.Logger("[OperationUseTranquilFilament] Start.");
 

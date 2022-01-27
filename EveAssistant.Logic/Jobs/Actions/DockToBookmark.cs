@@ -23,12 +23,12 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             Device.Mouse.ClickCentreScreen();
 
-            OperationDockToBookmark.Execute(Device, Ship, "Home");
+            OperationsManager.Execute(OperationTypes.DockToBookmark, Device, Ship, "Home");
         }
 
         private void ExitFromActionIfShipInSpace()
         {
-            OperationMoveLootToHangar.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.MoveLootToHangar, Device, Ship);
 
             FinishAction(ExitFromActionReason.ActionCompleted);
         }
@@ -36,7 +36,7 @@ namespace EveAssistant.Logic.Jobs.Actions
         //ExitFromActionByDowntime
         private void ExitFromActionByDowntime()
         {
-            OperationMoveLootToHangar.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.MoveLootToHangar, Device, Ship);
 
             FinishAction(ExitFromActionReason.Downtime);
         }

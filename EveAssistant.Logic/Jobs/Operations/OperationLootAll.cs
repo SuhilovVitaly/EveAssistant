@@ -8,7 +8,7 @@ namespace EveAssistant.Logic.Jobs.Operations
     {
         public static string Name { get; set; } = "[OperationLootAll]";
 
-        public static bool Execute(IDevice device)
+        public bool Execute(IDevice device, IShip ship)
         {
             var lootAllButtonOnScreen = device.FindObjectInScreen(Types.LootAll);
 

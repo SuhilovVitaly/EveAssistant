@@ -24,11 +24,11 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             Thread.Sleep(2000);
 
-            OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabGates);
+            OperationsManager.Execute(OperationTypes.OpenOverviewTab, Device, Ship, Types.OverviewTabGates);
 
             Thread.Sleep(2000);
 
-            if (OperationJumpToAbissGate.Execute(Device, Ship) == false)
+            if (OperationsManager.Execute(OperationTypes.JumpToAbissGate, Device, Ship) == false)
             {
                 Device.Report("Pattern_OverviewAbissGate_NotFound", "[OperationEnterToTrace] fail.");
                 FinishAction(ExitFromActionReason.Timeout);

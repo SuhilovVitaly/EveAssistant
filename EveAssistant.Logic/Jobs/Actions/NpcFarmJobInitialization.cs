@@ -20,17 +20,17 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             Logger($"Ship is {Ship.Name} ready.");
 
-            OperationClearBackground.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.ClearBackground, Device, Ship);
 
-            OperationOpenShipCargo.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.OpenShipCargo, Device, Ship);
 
-            OperationMoveFilamentToCargo.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.MoveFilamentToCargo, Device, Ship);
 
-            OperationOpenItemHangarFilters.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.OpenItemHangarFilters, Device, Ship);
 
-            OperationItemHangarFilterFilaments.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.ItemHangarFilterFilaments, Device, Ship);
 
-            OperationFormFleet.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.FormFleet, Device, Ship);
 
             FinishAction(ExitFromActionReason.ActionCompleted);
         }

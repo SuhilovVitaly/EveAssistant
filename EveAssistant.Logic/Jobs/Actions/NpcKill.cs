@@ -33,7 +33,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             Thread.Sleep(500);
 
-            OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabNpc);
+            OperationsManager.Execute(OperationTypes.OpenOverviewTab, Device, Ship, Types.OverviewTabNpc);
 
             var itemOnScreen = Device.FindObjectInScreen(Types.OverviewNps, Device.Zones.Overview);
 
@@ -119,7 +119,7 @@ namespace EveAssistant.Logic.Jobs.Actions
                 return;
             }
 
-            OperationOpenFire.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.OpenFire, Device, Ship);
 
             Device.Logger("Start kill selected NPC.");
 

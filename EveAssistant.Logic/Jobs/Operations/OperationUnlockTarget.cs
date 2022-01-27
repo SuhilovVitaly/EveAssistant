@@ -1,11 +1,12 @@
 ﻿using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
+using EveAssistant.Logic.Ships;
 
 namespace EveAssistant.Logic.Jobs.Operations
 {
     public class OperationUnlockTarget
     {
-        public static bool Execute(IDevice device)
+        public bool Execute(IDevice device, IShip ship)
         {
             var unlockTargetButtonOnScreen = device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, device.Zones.SelectedItem);
 

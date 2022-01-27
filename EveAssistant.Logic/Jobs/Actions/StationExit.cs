@@ -25,7 +25,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             Device.Mouse.ClickCentreScreen();
 
-            OperationExitStation.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.ExitStation, Device, Ship);
 
             Device.Mouse.ClickCentreScreen();
         }

@@ -7,7 +7,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 {
     public class OperationOpenFire
     {
-        public static bool Execute(IDevice device, IShip ship)
+        public bool Execute(IDevice device, IShip ship)
         {
             device.Logger("[OperationOpenFire] Start.");
 

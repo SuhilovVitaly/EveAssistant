@@ -8,10 +8,10 @@ namespace EveAssistant.Logic.Jobs.Operations
 {
     public class OperationExitStation
     {
-        public static string Name { get; set; } = "[OperationExitStation]";
+        public string Name { get; set; } = "[OperationExitStation]";
         private const string Pattern = Types.StationExit;
 
-        public static bool Execute(IDevice device, IShip ship)
+        public bool Execute(IDevice device, IShip ship)
         {
             Thread.Sleep(1000);
 

@@ -183,7 +183,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationWarpToBookmark.Execute(device, ship, "Point_1");
+                OperationsManager.Execute(OperationTypes.WarpToBookmark, device, ship, "Point_1");
             });
         }
 
@@ -205,8 +205,7 @@ namespace EveAssistant
             Task.Run(() =>
             {
                 Thread.Sleep(500);
-
-                OperationDockToBookmark.Execute(device, ship, "Home");
+                OperationsManager.Execute(OperationTypes.DockToBookmark, device, ship, "Home");
             });
         }
 
@@ -269,8 +268,7 @@ namespace EveAssistant
             Task.Run(() =>
             {
                 Thread.Sleep(500);
-
-                OperationOpenOverviewTab.Execute(device, ship, Types.OverviewTabNpc);
+                OperationsManager.Execute(OperationTypes.OpenOverviewTab, device, ship, Types.OverviewTabNpc);
             });
         }
 
@@ -281,8 +279,7 @@ namespace EveAssistant
             Task.Run(() =>
             {
                 Thread.Sleep(500);
-
-                OperationOpenOverviewTab.Execute(device, ship, Types.OverviewTabMove);
+                OperationsManager.Execute(OperationTypes.OpenOverviewTab, device, ship, Types.OverviewTabMove);
             });
         }
 
@@ -294,7 +291,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationOpenOverviewTab.Execute(device, ship, Types.OverviewTabLoot);
+                OperationsManager.Execute(OperationTypes.OpenOverviewTab, device, ship, Types.OverviewTabLoot);
             });
         }
 
@@ -305,8 +302,7 @@ namespace EveAssistant
             Task.Run(() =>
             {
                 Thread.Sleep(500);
-
-                OperationOpenOverviewTab.Execute(device, ship, Types.OverviewTabGates);
+                OperationsManager.Execute(OperationTypes.OpenOverviewTab, device, ship, Types.OverviewTabGates);
             });
         }
 
@@ -355,7 +351,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationEnableActiveModules.Execute(device, ship);
+                OperationsManager.Execute(OperationTypes.EnableActiveModules, device, ship);
             });
         }
 
@@ -367,7 +363,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationEnterToTrace.Execute(device, ship);
+                OperationsManager.Execute(OperationTypes.EnterToTrace, device, ship);
             });
         }
 
@@ -415,7 +411,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationJumpToAbissGate.Execute(device, ship);
+                OperationsManager.Execute(OperationTypes.JumpToAbissGate, device, ship);
             });
         }
 
@@ -456,7 +452,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationOpenItemHangarFilters.Execute(device, ship);
+                OperationsManager.Execute(OperationTypes.OpenItemHangarFilters, device, ship);
             });
         }
 
@@ -468,7 +464,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationItemHangarFilterFilaments.Execute(device, ship);
+                OperationsManager.Execute(OperationTypes.ItemHangarFilterFilaments, device, ship);
             });
         }
 
@@ -480,7 +476,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationItemHangarAll.Execute(device, ship);
+                OperationsManager.Execute(OperationTypes.ItemHangarAll, device, ship);
             });
         }
 
@@ -492,7 +488,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationMoveLootToHangar.Execute(device, ship);
+                OperationsManager.Execute(OperationTypes.MoveLootToHangar, device, ship);
             });
         }
 
@@ -504,7 +500,7 @@ namespace EveAssistant
             {
                 Thread.Sleep(500);
 
-                OperationFormFleet.Execute(device, ship);
+                OperationsManager.Execute(OperationTypes.FormFleet, device, ship);
             });
         }
 

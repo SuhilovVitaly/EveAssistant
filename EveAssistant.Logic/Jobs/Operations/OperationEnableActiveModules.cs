@@ -7,7 +7,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 {
     public class OperationEnableActiveModules
     {
-        public static bool Execute(IDevice device, IShip ship)
+        public bool Execute(IDevice device, IShip ship)
         {
             device.Logger("Start enable active modules.");
 

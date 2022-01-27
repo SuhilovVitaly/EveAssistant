@@ -1,15 +1,13 @@
 ﻿using System.Diagnostics;
-using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Ships;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Jobs.Operations
 {
     public class OperationApproachToObject
     {
-        public static bool Execute(IDevice device, IShip ship, string pattern)
+        public bool Execute(IDevice device, IShip ship, string pattern)
         {
             device.Logger("[OperationApproachToObject] Start.");
 

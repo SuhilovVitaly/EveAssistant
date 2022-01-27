@@ -7,7 +7,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 {
     public class OperationOpenOverviewTab
     {
-        public static bool Execute(IDevice device, IShip ship, string pattern)
+        public bool Execute(IDevice device, IShip ship, string pattern)
         {
             device.UnFocusClick();
 

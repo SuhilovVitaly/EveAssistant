@@ -82,6 +82,8 @@
     <Compile Include="Jobs\Operations\OperationSelectWreck.cs" />
     <Compile Include="Jobs\Operations\OperationSelectNpc.cs" />
     <Compile Include="Jobs\Operations\OperationOpenOverviewTab.cs" />
+    <Compile Include="Jobs\Operations\OperationsManager.cs" />
+    <Compile Include="Jobs\Operations\OperationTypes.cs" />
     <Compile Include="Jobs\Operations\OperationUnlockTarget.cs" />
     <Compile Include="Jobs\Operations\OperationUseTranquilFilament.cs" />
     <Compile Include="Jobs\Operations\OperationWarpToBookmark.cs" />

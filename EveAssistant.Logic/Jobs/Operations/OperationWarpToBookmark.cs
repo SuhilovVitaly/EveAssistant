@@ -11,7 +11,7 @@ namespace EveAssistant.Logic.Jobs.Operations
     {
         private const string Pattern = @"Bookmarks/";
 
-        public static bool Execute(IDevice device, IShip ship, string bookmark)
+        public bool Execute(IDevice device, IShip ship, string bookmark)
         {
             device.Logger("[OperationWarpToBookmark] Start warp to bookmark.");
 

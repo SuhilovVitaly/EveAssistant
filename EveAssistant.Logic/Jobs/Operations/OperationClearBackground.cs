@@ -9,7 +9,7 @@ namespace EveAssistant.Logic.Jobs.Operations
     {
         private const string Pattern = @"ShipExteriorDisabled";
 
-        public static bool Execute(IDevice device, IShip ship)
+        public bool Execute(IDevice device, IShip ship)
         {
             Thread.Sleep(1000);
 

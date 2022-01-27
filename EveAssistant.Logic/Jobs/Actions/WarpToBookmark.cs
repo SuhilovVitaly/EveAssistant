@@ -24,7 +24,7 @@ namespace EveAssistant.Logic.Jobs.Actions
         {
             Device.Mouse.ClickCentreScreen();
 
-            OperationWarpToBookmark.Execute(Device, Ship, _bookmark);
+            OperationsManager.Execute(OperationTypes.WarpToBookmark, Device, Ship, _bookmark);
         }
 
         private void ExitFromActionIfShipInSpace()

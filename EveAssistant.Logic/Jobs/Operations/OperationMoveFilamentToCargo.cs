@@ -10,7 +10,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 {
     public class OperationMoveFilamentToCargo
     {
-        public static void Execute(IDevice device, IShip ship)
+        public bool Execute(IDevice device, IShip ship)
         {
             Thread.Sleep(1000);
 
@@ -30,6 +30,8 @@ namespace EveAssistant.Logic.Jobs.Operations
             device.UnFocusClick();
 
             device.Logger("Finish move filament to cargo. Work time is " + workMetric.Elapsed.TotalSeconds.ToString("N2") + " seconds.");
+
+            return true;
         }
     }
 }

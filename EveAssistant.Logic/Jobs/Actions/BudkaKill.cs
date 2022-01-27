@@ -21,7 +21,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         public void CommandsExecute()
         {
-            OperationOpenOverviewTab.Execute(Device, Ship, Types.OverviewTabMove);
+            OperationsManager.Execute(OperationTypes.OpenOverviewTab, Device, Ship, Types.OverviewTabMove);
 
             Thread.Sleep(2000);
 
@@ -57,7 +57,7 @@ namespace EveAssistant.Logic.Jobs.Actions
 
             Thread.Sleep(3000);
 
-            OperationOpenFire.Execute(Device, Ship);
+            OperationsManager.Execute(OperationTypes.OpenFire, Device, Ship);
         }
 
         private void ExitFromActionKillBudka()

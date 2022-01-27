@@ -6,9 +6,9 @@ namespace EveAssistant.Logic.Jobs.Operations
 {
     public class OperationOpenCargo
     {
-        public static string Name { get; set; } = "[OperationOpenCargo]";
+        public string Name { get; set; } = "[OperationOpenCargo]";
 
-        public static bool Execute(IDevice device, IShip ship)
+        public bool Execute(IDevice device, IShip ship)
         {
             var openCargoButtonOnScreen = device.FindObjectInScreen(Types.PanelSelectedOpenCargo, device.Zones.SelectedItem);
 
