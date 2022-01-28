@@ -27,9 +27,18 @@ namespace EveAssistant.Logic.Jobs.Actions
             ActionExits.Add((CommonActionExits.IsTargetLost, ExitFromAction));
         }
 
+
+
         public void CommandsExecute()
         {
             _isAggressiveMode = false;
+
+            if (Device.FindObjectInScreen(Types.ShipInDock).IsFound)
+            {
+                Device.Report("ShipDestroyed", "Ship Destroyed");
+                FinishAction(ExitFromActionReason.ShipDestroyed);
+                return;
+            }
 
             Thread.Sleep(500);
 

@@ -243,6 +243,14 @@ namespace EveAssistant.Logic.Jobs
                     RunLootObjectKillAction();
                     break;
                 case ExitFromActionReason.Timeout:
+                    var unlockTargetButtonOnScreen = Device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, Device.Zones.SelectedItem);
+
+                    if (unlockTargetButtonOnScreen.IsFound)
+                    {
+                        Device.Report("UnTarget", "UnTarget execute.");
+                        Device.Click(unlockTargetButtonOnScreen.PositionCenterRandom());
+                    }
+
                     RunNpcKillAction();
                     break;
                 case ExitFromActionReason.PatternNotFound:
@@ -256,6 +264,11 @@ namespace EveAssistant.Logic.Jobs
                     LogWrite($"CantActivateGate.");
                     Thread.Sleep(TimeoutAfterKillNpcShipInMs);
                     RunNpcKillAction();
+                    break;
+
+                case ExitFromActionReason.ShipDestroyed:
+                    Device.Action = "ShipDestroyed";
+                    // TODO: Start next cycle on next ship
                     break;
 
                 default:

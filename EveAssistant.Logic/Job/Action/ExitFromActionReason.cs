@@ -31,6 +31,7 @@
         CantActivateGate,
         ActionCompletedWithAggressiveMode,
         BudkaNotFound,
-        RestartKillNpc
+        RestartKillNpc,
+        ShipDestroyed
     }
 }
