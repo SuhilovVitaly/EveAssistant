@@ -21,6 +21,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         public void CommandsExecute()
         {
+            Device.Metrics.PocketNumber = 0;
+
             Device.Mouse.ClickCentreScreen();
 
             OperationsManager.Execute(OperationTypes.DockToBookmark, Device, Ship, "Home");

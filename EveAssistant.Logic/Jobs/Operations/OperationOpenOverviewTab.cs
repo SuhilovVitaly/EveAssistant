@@ -19,7 +19,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 
             if (itemOnScreen.IsFound == false)
             {
-                device.Logger($"'{pattern}' pattern is not found. Operation abort.");
+                device.Report("PatternNotFound", $"'{pattern}' pattern is not found. Operation abort.");
                 return false;
             }
 

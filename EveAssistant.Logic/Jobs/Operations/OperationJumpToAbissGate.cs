@@ -14,7 +14,7 @@ namespace EveAssistant.Logic.Jobs.Operations
 
             var workMetric = Stopwatch.StartNew();
 
-            var itemOnScreen = device.FindObjectInScreen(Pattern);
+            var itemOnScreen = device.FindObjectInScreen(Pattern, device.Zones.Overview);
 
             if (itemOnScreen.IsFound == false)
             {
@@ -22,6 +22,8 @@ namespace EveAssistant.Logic.Jobs.Operations
                     $"[OperationEnterToTrace] {Pattern} not found. Work time is {workMetric.Elapsed.TotalSeconds:N2} seconds.");
                 return false;
             }
+
+            device.Logger($"[OperationJumpToAbissGate] 'AbyssalTrace' found. Click on {itemOnScreen.PositionCenter}");
 
             device.ClickAndReturn(itemOnScreen.PositionCenterRandom());
 

@@ -23,6 +23,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         public void CommandsExecute()
         {
+            Device.Metrics.PocketNumber++;
+
             Thread.Sleep(2000);
 
             OperationsManager.Execute(OperationTypes.OpenOverviewTab, Device, Ship, Types.OverviewTabGates);
