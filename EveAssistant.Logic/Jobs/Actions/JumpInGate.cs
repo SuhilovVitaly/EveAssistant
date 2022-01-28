@@ -11,6 +11,7 @@ namespace EveAssistant.Logic.Jobs.Actions
     public class JumpInGate : GenericAction, IBasicAction
     {
         public string Text { get; set; } = "[JumpInGate]";
+        private const int TimeoutAfterJumpInGateInMs = 1000;
 
         public JumpInGate(IDevice device, IShip ship) : base(device, ship)
         {
@@ -42,13 +43,23 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private void ExitFromAction()
         {
+            Thread.Sleep(TimeoutAfterJumpInGateInMs);
+
             Device.Logger($"Exit from {Text} process");
+
+            if (CommonActionExits.IsShipNotInAbissPocket(this).IsExitFromAction)
+            {
+                FinishAction(ExitFromActionReason.ShipNotInStation);
+                return;
+            }
 
             FinishAction(ExitFromActionReason.ActionCompleted);
         }
 
         private void ExitFromActionCantActivateGate()
         {
+            Thread.Sleep(TimeoutAfterJumpInGateInMs);
+
             Device.Logger($"Exit from {Text} process on 'CantActivateGate'");
 
             var itemOnScreen = Device.FindObjectInScreen(Types.WindowExitCantActivateGate);

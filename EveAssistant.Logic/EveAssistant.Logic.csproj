@@ -54,6 +54,7 @@
     <Compile Include="GameClient\LogHarvester.cs" />
     <Compile Include="Jobs\AbissHarvest.cs" />
     <Compile Include="Jobs\Actions\DockToBookmark.cs" />
+    <Compile Include="Jobs\Actions\EnableAllActiveModules.cs" />
     <Compile Include="Jobs\Actions\EnterToAbiss.cs" />
     <Compile Include="Jobs\Actions\JumpInGate.cs" />
     <Compile Include="Jobs\Actions\LootAllToCargo.cs" />

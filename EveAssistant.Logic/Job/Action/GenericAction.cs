@@ -12,6 +12,37 @@ namespace EveAssistant.Logic.Job.Action
     {
         public event Action<BasicActionResult, IBasicAction> OnComplete;
 
+        public event System.Action OnResumeAfterComplete;
+        public event System.Action OnResumeAfterNone;
+        public event System.Action OnResumeAfterUnderAttack;
+        public event System.Action OnResumeAfterTargetIsNotLocked;
+        public event System.Action OnResumeAfterTargetLost;
+        public event System.Action OnResumeAfterCargoIsFull;
+        public event System.Action OnResumeAfterShipNotInStation;
+        public event System.Action OnResumeAfterOverviewNotFound;
+        public event System.Action OnResumeAfterPatternNotFound;
+        public event System.Action OnResumeAfterAsteroidIsEnded;
+        public event System.Action OnResumeAfterTimeout;
+        public event System.Action OnResumeAfterShipLost;
+        public event System.Action OnResumeAfterObjectInOverviewNotFound;
+        public event System.Action OnResumeAfterBookmarkNotFound;
+        public event System.Action OnResumeAfterTargetInRange;
+        public event System.Action OnResumeAfterEmergencyEvacuation;
+        public event System.Action OnResumeAfterUnknownError;
+        public event System.Action OnResumeAfterInProgress;
+        public event System.Action OnResumeAfterFleetMemberNotFound;
+        public event System.Action OnResumeAfterShipDamaged;
+        public event System.Action OnResumeAfterAmmoRunsOut;
+        public event System.Action OnResumeAfterAllNpcAreKilled;
+        public event System.Action OnResumeAfterHarvestCompleted;
+        public event System.Action OnResumeAfterLootNotFound;
+        public event System.Action OnResumeAfterDowntime;
+        public event System.Action OnResumeAfterCantActivateGate;
+        public event System.Action OnResumeAfterActionCompletedWithAggressiveMode;
+        public event System.Action OnResumeAfterBudkaNotFound;
+        public event System.Action OnResumeAfterRestartKillNpc;
+        public event System.Action OnResumeAfterShipDestroyed;
+
         public IDevice Device { get; set; }
         public IShip Ship { get; set; }
         
@@ -37,11 +68,6 @@ namespace EveAssistant.Logic.Job.Action
             _crlRefreshMap.Elapsed += Event_Refresh;
             _crlRefreshMap.Interval = 1000;
             _crlRefreshMap.Enabled = false;
-        }
-
-        public void AfterExecute()
-        {
-
         }
 
         private bool inAction = false;
@@ -109,7 +135,106 @@ namespace EveAssistant.Logic.Job.Action
 
             Logger($"is finish. Work time is {WorkMetric.Elapsed.TotalSeconds:N2} seconds.");
 
-            OnComplete?.Invoke(new BasicActionResult { Type = Reason, Seconds = WorkMetric.Elapsed.TotalSeconds }, this as IBasicAction);
+            switch (Reason)
+            {
+                case ExitFromActionReason.ActionCompleted:
+                    OnResumeAfterComplete?.Invoke();
+                    break;
+                case ExitFromActionReason.None:
+                    OnResumeAfterNone?.Invoke();
+                    break;
+                case ExitFromActionReason.UnderAttack:
+                    OnResumeAfterUnderAttack?.Invoke();
+                    break;
+                case ExitFromActionReason.AsteroidsIsEnded:
+                    OnResumeAfterAsteroidIsEnded?.Invoke();
+                    break;
+                case ExitFromActionReason.TargetIsNotLocked:
+                    OnResumeAfterTargetIsNotLocked?.Invoke();
+                    break;
+                case ExitFromActionReason.TargetLost:
+                    OnResumeAfterTargetLost?.Invoke();
+                    break;
+                case ExitFromActionReason.CargoIsFull:
+                    OnResumeAfterCargoIsFull?.Invoke();
+                    break;
+                case ExitFromActionReason.ShipNotInStation:
+                    OnResumeAfterShipNotInStation?.Invoke();
+                    break;
+                case ExitFromActionReason.OverviewNotFound:
+                    OnResumeAfterOverviewNotFound?.Invoke();
+                    break;
+                case ExitFromActionReason.PatternNotFound:
+                    OnResumeAfterPatternNotFound?.Invoke();
+                    break;
+                case ExitFromActionReason.AsteroidIsEnded:
+                    OnResumeAfterAsteroidIsEnded?.Invoke();
+                    break;
+                case ExitFromActionReason.Timeout:
+                    OnResumeAfterTimeout?.Invoke();
+                    break;
+                case ExitFromActionReason.ShipLost:
+                    OnResumeAfterShipLost?.Invoke();
+                    break;
+                case ExitFromActionReason.ObjectInOverviewNotFound:
+                    OnResumeAfterObjectInOverviewNotFound?.Invoke();
+                    break;
+                case ExitFromActionReason.BookmarkNotFound:
+                    OnResumeAfterBookmarkNotFound?.Invoke();
+                    break;
+                case ExitFromActionReason.TargetInRange:
+                    OnResumeAfterTargetInRange?.Invoke();
+                    break;
+                case ExitFromActionReason.EmergencyEvacuation:
+                    OnResumeAfterEmergencyEvacuation?.Invoke();
+                    break;
+                case ExitFromActionReason.UnknownError:
+                    OnResumeAfterUnknownError?.Invoke();
+                    break;
+                case ExitFromActionReason.InProgress:
+                    OnResumeAfterInProgress?.Invoke();
+                    break;
+                case ExitFromActionReason.FleetMemberNotFound:
+                    OnResumeAfterFleetMemberNotFound?.Invoke();
+                    break;
+                case ExitFromActionReason.ShipDamaged:
+                    OnResumeAfterShipDamaged?.Invoke();
+                    break;
+                case ExitFromActionReason.AmmoRunsOut:
+                    OnResumeAfterAmmoRunsOut?.Invoke();
+                    break;
+                case ExitFromActionReason.AllNpcAreKilled:
+                    OnResumeAfterAllNpcAreKilled?.Invoke();
+                    break;
+                case ExitFromActionReason.HarvestCompleted:
+                    OnResumeAfterHarvestCompleted?.Invoke();
+                    break;
+                case ExitFromActionReason.LootNotFound:
+                    OnResumeAfterLootNotFound?.Invoke();
+                    break;
+                case ExitFromActionReason.Downtime:
+                    OnResumeAfterDowntime?.Invoke();
+                    break;
+                case ExitFromActionReason.CantActivateGate:
+                    OnResumeAfterCantActivateGate?.Invoke();
+                    break;
+                case ExitFromActionReason.ActionCompletedWithAggressiveMode:
+                    OnResumeAfterActionCompletedWithAggressiveMode?.Invoke();
+                    break;
+                case ExitFromActionReason.BudkaNotFound:
+                    OnResumeAfterBudkaNotFound?.Invoke();
+                    break;
+                case ExitFromActionReason.RestartKillNpc:
+                    OnResumeAfterRestartKillNpc?.Invoke();
+                    break;
+                case ExitFromActionReason.ShipDestroyed:
+                    OnResumeAfterShipDestroyed?.Invoke();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            //OnComplete?.Invoke(new BasicActionResult { Type = Reason, Seconds = WorkMetric.Elapsed.TotalSeconds }, this as IBasicAction);
         }
 
         public void WaitingActionResults()

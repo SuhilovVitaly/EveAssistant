@@ -18,6 +18,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private bool _isAggressiveMode;
 
+        private const int TimeoutAfterKillNpcShipInMs = 1000;
+
         public NpcKill(IDevice device, IShip ship) : base(device, ship)
         {
             TimeoutInSeconds = 360;
@@ -137,6 +139,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private void ExitFromAction()
         {
+            Thread.Sleep(TimeoutAfterKillNpcShipInMs);
+
             if (isUseAggressiveMode && _isAggressiveMode)
             {
                 _isAggressiveMode = false;

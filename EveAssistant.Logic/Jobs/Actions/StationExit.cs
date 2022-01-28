@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Logic.Job.Action;
 using EveAssistant.Logic.Ships;
@@ -10,6 +10,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 {
     public class StationExit : GenericAction, IBasicAction
     {
+        private const int TimeoutAfterStationExitMs = 5000;
+
         public string Text { get; set; } = "[StationExit]";
 
         public StationExit(IDevice device, IShip ship) : base(device, ship)
@@ -32,6 +34,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private void ExitFromActionIfShipInSpace()
         {
+            Thread.Sleep(TimeoutAfterStationExitMs);
+
             FinishAction(ExitFromActionReason.ActionCompleted);
         }
     }
