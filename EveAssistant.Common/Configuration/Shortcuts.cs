@@ -36,6 +36,8 @@
         public string OpenCargo => ConfigurationTools.GetConfigFromSectionOptionalStringValue("OpenCargo", "Shortcuts");
 
         public string FormFleet => ConfigurationTools.GetConfigFromSectionOptionalStringValue("FormFleet", "Shortcuts");
-        //
+
+        public string Orbit => ConfigurationTools.GetConfigFromSectionOptionalStringValue("Orbit", "Shortcuts");
+
     }
 }

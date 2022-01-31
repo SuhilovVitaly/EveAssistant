@@ -1,4 +1,5 @@
-﻿using EveAssistant.Common.Device;
+﻿using System.Threading;
+using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Job.Action;
 using EveAssistant.Logic.Jobs.Operations;
@@ -17,6 +18,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         public void CommandsExecute()
         {
+            Thread.Sleep(4000);
+
             Device.UnFocusClick();
 
             OperationsManager.Execute(OperationTypes.UnlockTarget, Device, Ship);

@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Threading;
+﻿using System.Threading;
 using EveAssistant.Common.Device;
 using EveAssistant.Common.Patterns;
 using EveAssistant.Logic.Job.Action;
@@ -48,6 +47,8 @@ namespace EveAssistant.Logic.Jobs.Actions
 
         private void ExitFromAction()
         {
+            Device.Metrics.PocketNumber++;
+
             FinishAction(ExitFromActionReason.ActionCompleted);
         }
     }

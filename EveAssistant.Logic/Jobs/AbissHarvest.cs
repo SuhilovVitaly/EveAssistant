@@ -74,6 +74,7 @@ namespace EveAssistant.Logic.Jobs
             ActionWaveNpcKill.OnResumeAfterPatternNotFound += ActionWaveNpcKill.Execute;
             ActionWaveNpcKill.OnResumeAfterObjectInOverviewNotFound += ActionWaveNpcKill.Execute;
             ActionWaveNpcKill.OnResumeAfterCantActivateGate += ActionWaveNpcKill.Execute;
+            ActionWaveNpcKill.OnResumeAfterTimeout += ActionWaveNpcKill.Execute;
             //-----------------------------------------------------------------------------------------------
             ActionLootObjectKill.OnResumeAfterComplete += ActionLootAllToCargo.Execute;
             ActionLootObjectKill.OnResumeAfterPatternNotFound += ActionLootAllToCargo.Execute;
@@ -84,6 +85,7 @@ namespace EveAssistant.Logic.Jobs
             ActionLootAllToCargo.OnResumeAfterLootNotFound += ActionJumpInGate.Execute;
             ActionLootAllToCargo.OnResumeAfterPatternNotFound += ActionJumpInGate.Execute;
             ActionLootAllToCargo.OnResumeAfterRestartKillNpc += ActionWaveInitialization.Execute;
+            ActionLootAllToCargo.OnResumeAfterTimeout += ActionJumpInGate.Execute;
             //-----------------------------------------------------------------------------------------------
             ActionJumpInGate.OnResumeAfterComplete += ActionWaveInitialization.Execute;
             ActionJumpInGate.OnResumeAfterShipNotInStation += ActionDockToBookmark.Execute;

@@ -41,6 +41,29 @@ namespace EveAssistant.Logic.Jobs.Actions
                 return;
             }
 
+            var orbitButtonOnScreen = Device.FindObjectInScreen(Types.PanelSelectedOrbit, Device.Zones.SelectedItem);
+
+            Device.Logger($"Click on '{orbitButtonOnScreen.PositionCenterRandom()}'");
+
+            Device.Click(orbitButtonOnScreen.PositionCenterRandom());
+
+            Thread.Sleep(1000);
+
+            Device.Logger($"Press '{Device.Shortcuts.FormFleet}'");
+
+            Device.Keyboard.PressKey(Device.Shortcuts.FormFleet);
+
+            Thread.Sleep(1000);
+
+            while (Device.FindObjectInScreen(Types.PanelSelectedItemTargetDisabled, Device.Zones.SelectedItem).IsFound)
+            {
+                Device.Logger("Distance is long. Waiting...");
+
+                Thread.Sleep(1000);
+            }
+
+            Thread.Sleep(1000);
+
             var selectedItemOnScreen = Device.FindObjectInScreen(Types.PanelSelectedItemTarget, Device.Zones.SelectedItem);
 
             if (itemOnScreen.IsFound)

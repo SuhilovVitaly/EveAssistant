@@ -67,9 +67,20 @@ namespace EveAssistant.Logic.Jobs.Actions
 
                     _isAggressiveMode = true;
 
-                    var orbitButtonOnScreen = Device.FindObjectInScreen(Types.PanelSelectedOrbit, Device.Zones.SelectedItem);
+                    var orbitButtonOnScreen =
+                        Device.FindObjectInScreen(Types.PanelSelectedOrbit, Device.Zones.SelectedItem);
+
+                    Device.Logger($"Click on '{orbitButtonOnScreen.PositionCenterRandom()}'");
 
                     Device.Click(orbitButtonOnScreen.PositionCenterRandom());
+
+                    Thread.Sleep(1000);
+
+                    Device.Logger($"Press '{Device.Shortcuts.FormFleet}'");
+
+                    Device.Keyboard.PressKey(Device.Shortcuts.FormFleet);
+
+                    Thread.Sleep(1000);
                 }
             }
 
