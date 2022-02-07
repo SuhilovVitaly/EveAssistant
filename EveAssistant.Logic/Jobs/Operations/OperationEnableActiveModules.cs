@@ -13,13 +13,13 @@ namespace EveAssistant.Logic.Jobs.Operations
 
             var workMetric = Stopwatch.StartNew();
 
-            Thread.Sleep(200);
+            Thread.Sleep(2000);
 
             foreach (var shipActiveModule in ship.ActiveModules)
             {
                 device.Keyboard.PressKey(shipActiveModule);
                 device.Logger("Module " + shipActiveModule + " is enabled.");
-                Thread.Sleep(200);
+                Thread.Sleep(2000);
             }
 
             device.Logger("All modules enabled. Work time is " + workMetric.Elapsed.Seconds + " seconds.");

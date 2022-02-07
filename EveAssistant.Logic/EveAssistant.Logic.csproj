@@ -107,6 +107,7 @@
     <Compile Include="Ships\IShip.cs" />
     <Compile Include="Ships\ShipModulesGroup.cs" />
     <Compile Include="Tools\Dates.cs" />
+    <Compile Include="Tools\Extensions.cs" />
     <Compile Include="Tools\ScreenCapture.cs" />
     <Compile Include="Tools\TrafficDispatcher.cs" />
   </ItemGroup>

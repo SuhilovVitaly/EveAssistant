@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +27,8 @@ namespace EveAssistant
         private readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private Client _selectedGameClient;
+
+        Hashtable _devices = new Hashtable();
 
         public ScreenMain()
         {
@@ -116,9 +120,9 @@ namespace EveAssistant
             }
         }
 
-        private AbissHarvest Job;
+        Hashtable jobs = new Hashtable();
 
-        private async void button19_Click(object sender, EventArgs e)
+        private void button19_Click(object sender, EventArgs e)
         {
 
             foreach (var item in cmbActiveClients.Items)
@@ -129,18 +133,7 @@ namespace EveAssistant
 
                 var ship = new Punisher();
 
-                if (Job is null)
-                {
-                    Job = new AbissHarvest(device, ship);
-
-                    await Job.Execute(Job.CancellationToken.Token);
-                }
-                else
-                {
-                    var secondJob = new AbissHarvest(device, ship);
-
-                    await secondJob.Execute(secondJob.CancellationToken.Token);
-                }
+                RunJob(new AbissHarvest(device, ship));
 
                 Thread.Sleep(10000);
             }
@@ -148,6 +141,15 @@ namespace EveAssistant
             //var pilot = (ComboboxItem)cmbActiveClients.SelectedItem;
 
             timer1.Enabled = true;
+        }
+
+        private async void RunJob(AbissHarvest job)
+        {
+            _devices.Add(job.Device.Pilot, job.Device);
+
+            jobs.Add(job.Device.Pilot, job);
+
+            await job.Execute(job.CancellationToken.Token);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -429,6 +431,12 @@ namespace EveAssistant
 
         private void Event_Refresh(object sender, EventArgs e)
         {
+            var selectedClient = ((ComboboxItem)cmbActiveClients.SelectedItem).Text;
+
+            if (jobs[selectedClient.Trim()] is null) return;
+
+            var Job = jobs[selectedClient.Trim()] as AbissHarvest;
+
             if (Job is null) return;
 
             txtJobWorkTime.Text = DateTime.Now.Subtract(Job.Device.Metrics.StartJobTime).ToString();
@@ -556,6 +564,126 @@ namespace EveAssistant
 
                 action.Execute();
             });
+        }
+
+        private void crlMetricsRefresh_Tick(object sender, EventArgs e)
+        {
+            dataGridView1.ColumnCount = 3;
+            dataGridView1.Columns.Clear();
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
+
+            dataGridView1.Columns[0].Width = 80;
+            dataGridView1.Columns[0].Name = "Action";
+
+            int i = 0;
+
+            foreach (DictionaryEntry dictionaryEntry in _devices)
+            {
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
+                i++;
+                dataGridView1.Columns[i].Width = 100;
+
+                var pilotName = dictionaryEntry.Key.ToString().Trim();
+
+                if (pilotName.Contains(" "))
+                {
+                    pilotName = pilotName.Split(' ')[0];
+                }
+
+                dataGridView1.Columns[i].Name = pilotName;
+            }
+
+            dataGridView1.Rows.Clear();
+
+            try
+            {
+                var rowShipType = new DataGridViewRow();
+                rowShipType.Cells.Add(new DataGridViewTextBoxCell { Value = "Ship Type" });
+
+                var rowWorkTime = new DataGridViewRow();
+                rowWorkTime.Cells.Add(new DataGridViewTextBoxCell { Value = "Work Time" });
+
+                var rowCycles = new DataGridViewRow();
+                rowCycles.Cells.Add(new DataGridViewTextBoxCell { Value = "Cycles" });
+
+                var rowCurrentCycle = new DataGridViewRow();
+                rowCurrentCycle.Cells.Add(new DataGridViewTextBoxCell { Value = "Current Cycle" });
+
+                var rowLastCycle = new DataGridViewRow();
+                rowLastCycle.Cells.Add(new DataGridViewTextBoxCell { Value = "Last Cycle" });
+
+                var rowLocation = new DataGridViewRow();
+                rowLocation.Cells.Add(new DataGridViewTextBoxCell { Value = "Location" });
+
+                var rowAction = new DataGridViewRow();
+                rowAction.Cells.Add(new DataGridViewTextBoxCell { Value = "Action" });
+
+                var rowActionTime = new DataGridViewRow();
+                rowActionTime.Cells.Add(new DataGridViewTextBoxCell { Value = "Action Time" });
+
+                foreach (DictionaryEntry dictionaryEntry in _devices)
+                {
+                    var pilotName = dictionaryEntry.Key.ToString().Trim();
+
+                    var device = (WindowClientDevice)dictionaryEntry.Value;
+
+                    var metrics = ((WindowClientDevice)dictionaryEntry.Value).Metrics;
+
+                    //if (metrics.Action is null) continue;
+
+                    rowLocation.Cells.Add(new DataGridViewTextBoxCell { Value = metrics.Location });
+                    rowAction.Cells.Add(new DataGridViewTextBoxCell { Value = device.Action.Replace("[", "").Replace("]", "") });
+                    rowActionTime.Cells.Add(new DataGridViewTextBoxCell { Value = metrics.ActionTime });
+                    try
+                    {
+                        rowWorkTime.Cells.Add(new DataGridViewTextBoxCell { Value = DateTime.Now.Subtract(metrics.StartJobTime).ToReadableString() });
+                    }
+                    catch
+                    {
+                        rowWorkTime.Cells.Add(new DataGridViewTextBoxCell { Value = "" });
+                    }
+                    rowCycles.Cells.Add(new DataGridViewTextBoxCell { Value = metrics.NumberOfCycles });
+
+                    try
+                    {
+                        rowCurrentCycle.Cells.Add(new DataGridViewTextBoxCell { Value = DateTime.Now.Subtract(metrics.StartCycleTime).ToReadableString() });
+                    }
+                    catch
+                    {
+                        rowCurrentCycle.Cells.Add(new DataGridViewTextBoxCell { Value = "" });
+                    }
+
+                    try
+                    {
+                        rowLastCycle.Cells.Add(new DataGridViewTextBoxCell { Value = metrics.LastCycleTime.ToReadableString() });
+                    }
+                    catch
+                    {
+                        rowLastCycle.Cells.Add(new DataGridViewTextBoxCell { Value = "" });
+                    }
+
+
+                    rowShipType.Cells.Add(new DataGridViewTextBoxCell { Value = metrics.ShipType });
+                }
+
+
+                dataGridView1.Rows.Add(rowShipType);
+
+                dataGridView1.Rows.Add(rowWorkTime);
+
+                dataGridView1.Rows.Add(rowCycles);
+                dataGridView1.Rows.Add(rowLastCycle);
+                dataGridView1.Rows.Add(rowCurrentCycle);
+
+                dataGridView1.Rows.Add(rowLocation);
+                dataGridView1.Rows.Add(rowAction);
+                dataGridView1.Rows.Add(rowActionTime);
+            }
+            catch (Exception exception)
+            {
+
+            }
         }
     }
 }
