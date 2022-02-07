@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -129,7 +130,10 @@ namespace EveAssistant
             {
                 var pilotInformation = item as ComboboxItem;
 
-                var device = new WindowClientDevice(pilotInformation.Value, LogWrite, Global.ApplicationSettings.Shortcuts, Global.PatternFactory, pilotInformation.Text.Trim());
+                var device = new WindowClientDevice(pilotInformation.Value, LogWrite, Global.ApplicationSettings.Shortcuts, Global.PatternFactory, pilotInformation.Text.Trim())
+                    {
+                        Id = DateTime.UtcNow.Ticks
+                    };
 
                 var ship = new Punisher();
 
@@ -683,6 +687,15 @@ namespace EveAssistant
             catch (Exception exception)
             {
 
+            }
+        }
+
+        private void timerSaveMetrics_Tick(object sender, EventArgs e)
+        {
+            foreach (DictionaryEntry deviceEntry in _devices)
+            {
+                var device = (IDevice)deviceEntry.Value;
+                device.Metrics.Print(device);
             }
         }
     }

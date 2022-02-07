@@ -118,6 +118,7 @@ namespace EveAssistant
             this.button34 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.crlMetricsRefresh = new System.Windows.Forms.Timer(this.components);
+            this.timerSaveMetrics = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1326,6 +1327,12 @@ namespace EveAssistant
             this.crlMetricsRefresh.Interval = 1000;
             this.crlMetricsRefresh.Tick += new System.EventHandler(this.crlMetricsRefresh_Tick);
             // 
+            // timerSaveMetrics
+            // 
+            this.timerSaveMetrics.Enabled = true;
+            this.timerSaveMetrics.Interval = 10000;
+            this.timerSaveMetrics.Tick += new System.EventHandler(this.timerSaveMetrics_Tick);
+            // 
             // ScreenMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1450,6 +1457,7 @@ namespace EveAssistant
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.Timer crlMetricsRefresh;
+        private System.Windows.Forms.Timer timerSaveMetrics;
     }
 }
 

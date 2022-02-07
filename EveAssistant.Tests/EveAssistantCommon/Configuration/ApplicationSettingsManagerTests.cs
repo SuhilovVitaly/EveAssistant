@@ -7,19 +7,34 @@ namespace EveAssistant.Tests.EveAssistantCommon.Configuration
     public class ApplicationSettingsManagerTests
     {
         [Test]
-        public void PatternsLoadedFromWrongDirectoryShouldGetException()
+        public void IsBeforeDownTimeShouldGetBeCorrect()
         {
             // Arrange
-            const string exceptedShortcutsApproach = "Q";
 
             // Act
-            var settings = EveAssistant.Global.ApplicationSettings;
 
             // Assert
-            Assert.That(exceptedShortcutsApproach, Is.EqualTo(settings.Shortcuts.Approach));
 
+            Assert.IsTrue(Logic.Tools.Dates.IsBeforeDownTime(
+                new DateTime(
+                    DateTime.UtcNow.Year,
+                    DateTime.UtcNow.Month,
+                    DateTime.UtcNow.Day,
+                    08,00,00)));
 
-            bool silenceAlarm = Logic.Tools.Dates.IsDownTime(DateTime.UtcNow);
+            Assert.IsFalse(Logic.Tools.Dates.IsBeforeDownTime(
+                new DateTime(
+                    DateTime.UtcNow.Year,
+                    DateTime.UtcNow.Month,
+                    DateTime.UtcNow.Day,
+                    12, 00, 00)));
+
+            Assert.IsTrue(Logic.Tools.Dates.IsBeforeDownTime(
+                new DateTime(
+                    DateTime.UtcNow.Year,
+                    DateTime.UtcNow.Month,
+                    DateTime.UtcNow.Day - 1,
+                    12, 00, 00)));
         }
     }
 }

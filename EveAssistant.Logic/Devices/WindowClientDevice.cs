@@ -31,6 +31,7 @@ namespace EveAssistant.Logic.Devices
             Keyboard = new KeyboardInput(handle);
 
             LogEvents = new LogHarvester(this);
+            // TODO: Read metrics from metrics file of current day
             Metrics = new JobMetrics();
 
             Zones = new ScreenZones();

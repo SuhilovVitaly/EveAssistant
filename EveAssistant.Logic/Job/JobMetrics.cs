@@ -1,6 +1,7 @@
 ﻿using System;
 using EveAssistant.Common;
 using EveAssistant.Common.Device;
+using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Job
 {
@@ -143,13 +144,14 @@ namespace EveAssistant.Logic.Job
 
         public void Print(IDevice device)
         {
-            device.Logger("---------------------------------");
-            device.Logger("TargetNoLongerPresent " + TargetNoLongerPresentInSeconds());
-            device.Logger("LastWeaponReload " + LastWeaponReloadInSeconds());
-            device.Logger("LastEnemyAttack " + LastEnemyAttackInSeconds());
-            device.Logger("LastTargetLimitExceeded " + LastTargetLimitExceededInSeconds());
-            device.Logger("LastWeaponActivity " + LastWeaponActivityInSeconds());
-            device.Logger("---------------------------------");
+            MetricsManager.Show(device);
+            //device.Logger("---------------------------------");
+            //device.Logger("TargetNoLongerPresent " + TargetNoLongerPresentInSeconds());
+            //device.Logger("LastWeaponReload " + LastWeaponReloadInSeconds());
+            //device.Logger("LastEnemyAttack " + LastEnemyAttackInSeconds());
+            //device.Logger("LastTargetLimitExceeded " + LastTargetLimitExceededInSeconds());
+            //device.Logger("LastWeaponActivity " + LastWeaponActivityInSeconds());
+            //device.Logger("---------------------------------");
         }
 
         public void CollectHarvestAction(double reasonExitSeconds)

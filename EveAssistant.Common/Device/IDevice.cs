@@ -8,6 +8,7 @@ namespace EveAssistant.Common.Device
 {
     public interface IDevice
     {
+        long Id { get; set; }
         int ScreenModeDelta { get; set; }
         Bitmap GetScreen();
         IntPtr IntPtr { get; set; }

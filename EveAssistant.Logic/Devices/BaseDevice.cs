@@ -7,12 +7,12 @@ using EveAssistant.Common.Device;
 using EveAssistant.Common.Device.Events;
 using EveAssistant.Common.UserInterface;
 using EveAssistant.Graphic;
-using EveAssistant.Logic.Tools;
 
 namespace EveAssistant.Logic.Devices
 {
     public class BaseDevice
     {
+        public long Id { get; set; }
         public int ScreenModeDelta { get; set; } = 31;
         public IntPtr IntPtr { get; set; }
 

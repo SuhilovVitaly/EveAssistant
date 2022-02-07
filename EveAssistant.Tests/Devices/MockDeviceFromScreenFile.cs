@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using EveAssistant.Common.Device;
 using EveAssistant.Graphic;
+using EveAssistant.Logic.Job;
 
 namespace EveAssistant.Tests.Devices
 {
@@ -19,6 +20,8 @@ namespace EveAssistant.Tests.Devices
             _bitmap = CreateMockScreen();
 
             PatternFactory = new Patterns(Global.PatternsClientPath);
+
+            Metrics = new JobMetrics();
         }
 
         public Bitmap GetScreen()
