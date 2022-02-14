@@ -119,6 +119,7 @@ namespace EveAssistant
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.crlMetricsRefresh = new System.Windows.Forms.Timer(this.components);
             this.timerSaveMetrics = new System.Windows.Forms.Timer(this.components);
+            this.button29 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1055,6 +1056,7 @@ namespace EveAssistant
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Black;
+            this.tabPage2.Controls.Add(this.button29);
             this.tabPage2.Controls.Add(this.button28);
             this.tabPage2.Controls.Add(this.button27);
             this.tabPage2.Controls.Add(this.button26);
@@ -1333,6 +1335,23 @@ namespace EveAssistant
             this.timerSaveMetrics.Interval = 10000;
             this.timerSaveMetrics.Tick += new System.EventHandler(this.timerSaveMetrics_Tick);
             // 
+            // button29
+            // 
+            this.button29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button29.BackColor = System.Drawing.Color.DarkKhaki;
+            this.button29.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button29.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button29.Location = new System.Drawing.Point(223, 122);
+            this.button29.Name = "button29";
+            this.button29.Size = new System.Drawing.Size(188, 23);
+            this.button29.TabIndex = 176;
+            this.button29.Text = "Reset Activity";
+            this.button29.UseVisualStyleBackColor = false;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
+            // 
             // ScreenMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1458,6 +1477,7 @@ namespace EveAssistant
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.Timer crlMetricsRefresh;
         private System.Windows.Forms.Timer timerSaveMetrics;
+        private System.Windows.Forms.Button button29;
     }
 }
 

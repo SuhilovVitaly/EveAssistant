@@ -59,6 +59,7 @@
     <Compile Include="Jobs\Actions\JumpInGate.cs" />
     <Compile Include="Jobs\Actions\LootAllToCargo.cs" />
     <Compile Include="Jobs\Actions\NpcFarmJobInitialization.cs" />
+    <Compile Include="Jobs\Actions\ResetActivity.cs" />
     <Compile Include="Jobs\Actions\StationExit.cs" />
     <Compile Include="Jobs\Actions\WarpToBookmark.cs" />
     <Compile Include="Jobs\Actions\WaveInitialization.cs" />

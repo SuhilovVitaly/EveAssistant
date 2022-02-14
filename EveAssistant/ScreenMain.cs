@@ -698,5 +698,23 @@ namespace EveAssistant
                 device.Metrics.Print(device);
             }
         }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            var (device, ship) = GetGeneralContext();
+
+            device.IsDebug = false;
+
+            Task.Run(() =>
+            {
+                Thread.Sleep(500);
+
+                BringToFront(device.IntPtr);
+
+                var action = new ResetActivity(device, ship);
+
+                action.Execute();
+            });
+        }
     }
 }

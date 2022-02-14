@@ -10,7 +10,7 @@ namespace EveAssistant.Logic.Jobs.Operations
         {
             var unlockTargetButtonOnScreen = device.FindObjectInScreen(Types.PanelSelectedItemUnLockTarget, device.Zones.SelectedItem);
 
-            if (!unlockTargetButtonOnScreen.IsFound) return true;
+            if (!unlockTargetButtonOnScreen.IsFound) return false;
 
             device.Report("RemovePreviousTarget");
             device.ClickAndReturn(unlockTargetButtonOnScreen.PositionCenterRandom(), "Remove previous target.");

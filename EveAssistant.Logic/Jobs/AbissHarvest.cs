@@ -30,8 +30,9 @@ namespace EveAssistant.Logic.Jobs
         private IBasicAction ActionJumpInGate { get; set; }
         private IBasicAction ActionDockToBookmark { get; set; }
         private IBasicAction ActionEnableAllActiveModules { get; set; }
+        private IBasicAction ActionResetActivity { get; set; }
 
-        public AbissHarvest(IDevice device, IShip ship)
+    public AbissHarvest(IDevice device, IShip ship)
         {
             Device = device;
             Ship = ship;
@@ -49,6 +50,7 @@ namespace EveAssistant.Logic.Jobs
             ActionLootAllToCargo = new LootAllToCargo(Device, Ship);
             ActionJumpInGate = new JumpInGate(Device, Ship);
             ActionDockToBookmark = new DockToBookmark(Device, Ship);
+            ActionResetActivity = new ResetActivity(Device, Ship);
 
             //-----------------------------------------------------------------------------------------------
             ActionJobInitialization.OnResumeAfterComplete += ActionStationExit.Execute;
@@ -71,10 +73,10 @@ namespace EveAssistant.Logic.Jobs
             ActionWaveNpcKill.OnResumeAfterComplete += ActionWaveNpcKill.Execute;
             ActionWaveNpcKill.OnResumeAfterAllNpcAreKilled += ActionLootObjectKill.Execute;
             ActionWaveNpcKill.OnResumeAfterActionCompletedWithAggressiveMode += ActionJumpInGate.Execute;
-            ActionWaveNpcKill.OnResumeAfterPatternNotFound += ActionWaveNpcKill.Execute;
-            ActionWaveNpcKill.OnResumeAfterObjectInOverviewNotFound += ActionWaveNpcKill.Execute;
-            ActionWaveNpcKill.OnResumeAfterCantActivateGate += ActionWaveNpcKill.Execute;
-            ActionWaveNpcKill.OnResumeAfterTimeout += ActionWaveNpcKill.Execute;
+            ActionWaveNpcKill.OnResumeAfterPatternNotFound += ActionResetActivity.Execute;
+            ActionWaveNpcKill.OnResumeAfterObjectInOverviewNotFound += ActionResetActivity.Execute;
+            ActionWaveNpcKill.OnResumeAfterCantActivateGate += ActionResetActivity.Execute;
+            ActionWaveNpcKill.OnResumeAfterTimeout += ActionResetActivity.Execute;
             //-----------------------------------------------------------------------------------------------
             ActionLootObjectKill.OnResumeAfterComplete += ActionLootAllToCargo.Execute;
             ActionLootObjectKill.OnResumeAfterPatternNotFound += ActionLootAllToCargo.Execute;
@@ -94,6 +96,8 @@ namespace EveAssistant.Logic.Jobs
             //-----------------------------------------------------------------------------------------------
             ActionDockToBookmark.OnResumeAfterComplete += Event_CycleEnd;
             ActionDockToBookmark.OnResumeAfterTimeout += ActionStationExit.Execute;
+            //-----------------------------------------------------------------------------------------------
+            ActionResetActivity.OnResumeAfterComplete += ActionWaveNpcKill.Execute;
             //-----------------------------------------------------------------------------------------------
 
             Device.Metrics.StartJobTime = DateTime.Now;
